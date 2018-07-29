@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-navigation';
 
 class HomeScreen extends Component {
   static navigationOptions = {
-    title: 'Home'
+    header: null
   };
 
   render() {
