@@ -27,7 +27,8 @@ const styles = {
       paddingLeft: 5,
       fontSize: 18,
       lineHeight: 23,
-      flex: 1
+      flex: 1,
+      textAlign: 'center'
   },
   containerStyle: {
       height: 40, 

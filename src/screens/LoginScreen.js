@@ -1,22 +1,25 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, LayoutAnimation } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
-import { Input, Button, Container, SubContainer } from '../components/common';
+import { Input, Button, Container, SubContainer, LoadingOverlay } from '../components/common';
 
 const { width, height } = Dimensions.get('window');
 const LoginType = {
-  select: 0,
-  login: 1,
-  signup: 2
+  select: 'Select',
+  login: 'Login',
+  signup: 'Signup'
 };
-const ThemeColor = '#da3732'
+const ThemeColor = '#f10026'
 
 class LoginScreen extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      loginType: LoginType.select
+      loginType: LoginType.select,
+      email: '',
+      password: '',
+      loading: false
     };
   }
 
@@ -35,17 +38,25 @@ class LoginScreen extends Component {
   chooseRenderType() {
     var render;
     switch (this.state.loginType) {
-      case 0:
+      case 'Select':
         render = this.renderSelectState();
         break;
-      case 1:
+      case 'Login':
         render = this.renderLoginState();
         break;
-      case 2:
+      case 'Signup':
         render = this.renderLoginState();
         break;
     }
     return render;
+  }
+
+  renderLoading() {
+    if (this.state.loading) {
+      return (
+        <LoadingOverlay />
+      );
+    }
   }
 
   renderSelectState() {
@@ -62,39 +73,76 @@ class LoginScreen extends Component {
     );
   }
 
+  onEmailChange = email => this.setState({ email });
+  onPasswordChange = password => this.setState({ password });
+
   renderLoginState() {
-    console.log('login state');
     return (
       <View>
         <SubContainer>
           <Input 
-            placeholder='password'
-            secureTextEntry={true}
-            onChangeText={value => this.props.passwordChanged(value) }
-            onSubmitEditing={this.onButtonPress.bind(this)}
-            value={this.props.password}
+            placeholder='email'
+            onChangeText={this.onEmailChange}
           />
         </SubContainer>
         <SubContainer>
-          <Input />
+          <Input 
+              placeholder='password'
+              secureTextEntry={true}
+              onChangeText={this.onPasswordChange}
+              onSubmitEditing={this.onButtonPress.bind(this)}
+            />
         </SubContainer>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' onPress={this.onButtonPress.bind(this)}>Login</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' onPress={this.onButtonPress.bind(this)}>{this.state.loginType}</Button>
         </SubContainer>
       </View>
     );
   }
 
+  onLoginPress() {
+    this.setState({ loading: true });
+    var newState = LoginType.select;
+    switch (this.state.loginType) {
+      case 'Select':
+        newState = LoginType.login;
+        break;
+      case 'Login':
+        newState = LoginType.signup;
+        break;
+      case 'Signup':
+        newState = LoginType.select;
+        break;
+    }
+    this.setState({ loginType: newState });
+  }
+
+  onSignupPress() {
+    var newState = LoginType.select;
+    switch (this.state.loginType) {
+      case 'Select':
+        newState = LoginType.login;
+        break;
+      case 'Login':
+        newState = LoginType.signup;
+        break;
+      case 'Signup':
+        newState = LoginType.select;
+        break;
+    }
+    this.setState({ loginType: newState });
+  }
+
   onButtonPress() {
     var newState = LoginType.select;
     switch (this.state.loginType) {
-      case 0:
+      case 'Select':
         newState = LoginType.login;
         break;
-      case 1:
+      case 'Login':
         newState = LoginType.signup;
         break;
-      case 2:
+      case 'Signup':
         newState = LoginType.select;
         break;
     }
@@ -108,6 +156,7 @@ class LoginScreen extends Component {
           <Image source={require('../images/nshape-main-logo.png')} style={styles.logoStyle} resizeMode="contain" />
           {this.chooseRenderType()}
         </Container>
+        {this.renderLoading}
       </SafeAreaView>
     );
   }
@@ -115,7 +164,7 @@ class LoginScreen extends Component {
 
 const styles = {
   containerStyle: {
-    flex: 1,
+    paddingTop: 50,
     flexDirection: 'row',
     alignItems: 'center'
   },
