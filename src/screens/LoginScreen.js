@@ -35,6 +35,9 @@ class LoginScreen extends Component {
     this.props.navigation.navigate('Home');
   }
 
+  onEmailChange = email => this.setState({ email });
+  onPasswordChange = password => this.setState({ password });
+
   chooseRenderType() {
     var render;
     switch (this.state.loginType) {
@@ -60,21 +63,17 @@ class LoginScreen extends Component {
   }
 
   renderSelectState() {
-    console.log('select state');
     return (
       <View>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' onPress={this.onButtonPress.bind(this)}>Sign Up</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' onPress={this.onSignupPress.bind(this)}>Sign Up</Button>
         </SubContainer>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' onPress={this.onButtonPress.bind(this)}>Log In</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' onPress={this.onLoginPress.bind(this)}>Log In</Button>
         </SubContainer>
       </View>
     );
   }
-
-  onEmailChange = email => this.setState({ email });
-  onPasswordChange = password => this.setState({ password });
 
   renderLoginState() {
     return (
@@ -101,36 +100,11 @@ class LoginScreen extends Component {
   }
 
   onLoginPress() {
-    this.setState({ loading: true });
-    var newState = LoginType.select;
-    switch (this.state.loginType) {
-      case 'Select':
-        newState = LoginType.login;
-        break;
-      case 'Login':
-        newState = LoginType.signup;
-        break;
-      case 'Signup':
-        newState = LoginType.select;
-        break;
-    }
-    this.setState({ loginType: newState });
+    this.setState({ loginType: LoginType.login });
   }
 
   onSignupPress() {
-    var newState = LoginType.select;
-    switch (this.state.loginType) {
-      case 'Select':
-        newState = LoginType.login;
-        break;
-      case 'Login':
-        newState = LoginType.signup;
-        break;
-      case 'Signup':
-        newState = LoginType.select;
-        break;
-    }
-    this.setState({ loginType: newState });
+    this.setState({ loginType: LoginType.signup });
   }
 
   onButtonPress() {
@@ -146,7 +120,7 @@ class LoginScreen extends Component {
         newState = LoginType.select;
         break;
     }
-    this.setState({ loginType: newState });
+    this.setState({ loading: true });
   }
 
   render() {
@@ -156,7 +130,7 @@ class LoginScreen extends Component {
           <Image source={require('../images/nshape-main-logo.png')} style={styles.logoStyle} resizeMode="contain" />
           {this.chooseRenderType()}
         </Container>
-        {this.renderLoading}
+        {this.renderLoading()}
       </SafeAreaView>
     );
   }

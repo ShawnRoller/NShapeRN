@@ -16,7 +16,7 @@ const styles = {
     flex: 1,
     left: 0,
     top: 0,
-    opactity: 0.5,
+    opacity: 0.5,
     backgroundColor: 'black',
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height
