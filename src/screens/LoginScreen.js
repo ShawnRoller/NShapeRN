@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, LayoutAnimation } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { Input, Button, Container, SubContainer, LoadingOverlay } from '../components/common';
+import firebase from 'firebase';
+import firebaseconfig from '../config/firebaseconfig';
 
 const { width, height } = Dimensions.get('window');
 const LoginType = {
@@ -22,6 +24,17 @@ class LoginScreen extends Component {
       loading: false
     };
   }
+
+  componentWillMount() {
+    firebase.initializeApp({
+        apiKey: firebaseconfig.apiKey,
+        authDomain: firebaseconfig.authDomain,
+        databaseURL: firebaseconfig.databaseURL,
+        projectId: firebaseconfig.projectId,
+        storageBucket: firebaseconfig.storageBucket,
+        messagingSenderId: firebaseconfig.messagingSenderId
+    });
+}
 
   componentWillUpdate() {
     LayoutAnimation.easeInEaseOut();
