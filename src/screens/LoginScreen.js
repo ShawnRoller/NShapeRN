@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, LayoutAnimation } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, LayoutAnimation, Alert } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { Input, Button, Container, SubContainer, LoadingOverlay } from '../components/common';
 import firebase from 'firebase';
 import firebaseconfig from '../config/firebaseconfig';
+import FirebaseAPI from '../components/api/FirebaseAPI';
 
 const { width, height } = Dimensions.get('window');
 const LoginType = {
@@ -14,6 +15,9 @@ const LoginType = {
 const ThemeColor = '#f10026'
 
 class LoginScreen extends Component {
+  static navigationOptions = {
+    header: null
+  };
 
   constructor(props) {
     super(props);
@@ -40,9 +44,6 @@ class LoginScreen extends Component {
     LayoutAnimation.easeInEaseOut();
   }
 
-  static navigationOptions = {
-    header: null
-  };
 
   navigateToHome() {
     this.props.navigation.navigate('Home');
@@ -50,6 +51,86 @@ class LoginScreen extends Component {
 
   onEmailChange = email => this.setState({ email });
   onPasswordChange = password => this.setState({ password });
+
+  onCancelPress() {
+    this.setState({ loginType: LoginType.select });
+  }
+
+  onLoginPress() {
+    this.setState({ loginType: LoginType.login });
+  }
+
+  onSignupPress() {
+    this.setState({ loginType: LoginType.signup });
+  }
+
+  onButtonPress() {
+    this.setState({ loading: true });
+    switch (this.state.loginType) {
+      case 'Select':
+        break;
+      case 'Login':
+        this.attemptLogin();
+        break;
+      case 'Signup':
+        this.attemptSignUp();
+        break;
+    }
+  }
+
+  attemptLogin() {
+    const { email, password } = this.state;
+
+    var api = new FirebaseAPI({
+      success: function(user) {
+        this.loginSuccess();
+      }.bind(this),
+      failure: function(error) {
+        this.loginFailure(error);
+      }.bind(this)
+    });
+
+    try {
+      api.authenticate({ email, password });
+    } catch (error) {
+      console.log(`Could not connect to firebase: ${error}`);
+    }
+  }
+
+  attemptSignUp() {
+    const { email, password } = this.state;
+
+    var api = new FirebaseAPI({
+      success: function(user) {
+        this.loginSuccess();
+      }.bind(this),
+      failure: function(error) {
+        this.loginFailure(error);
+      }.bind(this)
+    });
+
+    try {
+      api.signUp({ email, password });
+    } catch (error) {
+      console.log(`Could not connect to firebase: ${error}`);
+    }
+  }
+
+  loginSuccess = () => {
+    this.setState({ loading: false });
+    this.navigateToHome();
+  }
+
+  loginFailure = (error) => {
+    this.setState({ loading: false });
+    if (error) {
+      console.log('Error: ' + JSON.stringify(error));
+      Alert.alert('Whoops!', error);
+    }
+    else {
+      Alert.alert('Whoops!', 'Something went wrong.');
+    }
+  }
 
   chooseRenderType() {
     var render;
@@ -79,10 +160,10 @@ class LoginScreen extends Component {
     return (
       <View>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' onPress={this.onSignupPress.bind(this)}>Sign Up</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' shadow onPress={this.onLoginPress.bind(this)}>Log In</Button>
         </SubContainer>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' onPress={this.onLoginPress.bind(this)}>Log In</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' shadow onPress={this.onSignupPress.bind(this)}>Sign Up</Button>
         </SubContainer>
       </View>
     );
@@ -106,34 +187,13 @@ class LoginScreen extends Component {
             />
         </SubContainer>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' onPress={this.onButtonPress.bind(this)}>{this.state.loginType}</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' shadow onPress={this.onButtonPress.bind(this)}>{this.state.loginType}</Button>
+        </SubContainer>
+        <SubContainer>
+          <Button textColor='#666666' onPress={this.onCancelPress.bind(this)}>cancel</Button>
         </SubContainer>
       </View>
     );
-  }
-
-  onLoginPress() {
-    this.setState({ loginType: LoginType.login });
-  }
-
-  onSignupPress() {
-    this.setState({ loginType: LoginType.signup });
-  }
-
-  onButtonPress() {
-    var newState = LoginType.select;
-    switch (this.state.loginType) {
-      case 'Select':
-        newState = LoginType.login;
-        break;
-      case 'Login':
-        newState = LoginType.signup;
-        break;
-      case 'Signup':
-        newState = LoginType.select;
-        break;
-    }
-    this.setState({ loading: true });
   }
 
   render() {
