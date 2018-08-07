@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-const Button = ({ onPress, textColor, backgroundColor, shadow, children }) => {
+const Button = ({ onPress, textColor, fontSize, backgroundColor, shadow, children }) => {
 
   var shadowColor;
   var shadowOffset;
@@ -16,7 +16,7 @@ const Button = ({ onPress, textColor, backgroundColor, shadow, children }) => {
 
   return (
     <TouchableOpacity onPress={onPress} style={[styles.buttonStyle, {backgroundColor}, {shadowColor}, {shadowOpacity}, {shadowRadius}, {shadowOffset} ]}>
-      <Text style={[styles.textStyle, {color: textColor}]}>
+      <Text style={[styles.textStyle, {color: textColor}, {fontSize}]}>
         {children}
       </Text>
     </TouchableOpacity>
@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   textStyle: {
-    fontSize: 20,
     fontWeight: '600',
     paddingTop: 10,
     paddingBottom: 10,

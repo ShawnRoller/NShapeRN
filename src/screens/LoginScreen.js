@@ -25,7 +25,7 @@ class LoginScreen extends Component {
       loginType: LoginType.select,
       email: '',
       password: '',
-      loading: false
+      loading: true
     };
   }
 
@@ -42,6 +42,15 @@ class LoginScreen extends Component {
 
   componentWillUpdate() {
     LayoutAnimation.easeInEaseOut();
+  }
+
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.setState({ loading: false });
+      if (user) {
+        this.navigateToHome();
+      }
+    });
   }
 
 
@@ -160,10 +169,10 @@ class LoginScreen extends Component {
     return (
       <View>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow onPress={this.onLoginPress.bind(this)}>Log In</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onLoginPress.bind(this)}>Log In</Button>
         </SubContainer>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow onPress={this.onSignupPress.bind(this)}>Sign Up</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onSignupPress.bind(this)}>Sign Up</Button>
         </SubContainer>
       </View>
     );
@@ -176,6 +185,8 @@ class LoginScreen extends Component {
           <Input 
             autoFocus
             placeholder='email'
+            autoCorrect={false}
+            autoCapitalize='none'
             onChangeText={this.onEmailChange}
           />
         </SubContainer>
@@ -188,10 +199,10 @@ class LoginScreen extends Component {
             />
         </SubContainer>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow onPress={this.onButtonPress.bind(this)}>{this.state.loginType}</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onButtonPress.bind(this)}>{this.state.loginType}</Button>
         </SubContainer>
         <SubContainer>
-          <Button textColor='#666666' onPress={this.onCancelPress.bind(this)}>cancel</Button>
+          <Button textColor='#666666' fontSize={15} onPress={this.onCancelPress.bind(this)}>cancel</Button>
         </SubContainer>
       </View>
     );

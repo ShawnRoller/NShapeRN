@@ -1,17 +1,22 @@
 import React from 'react';
 import { TextInput, View } from 'react-native';
 
-const Input = ({ placeholder, autoCorrect, autoCapitalize, secureTextEntry, value, onChangeText, onSubmitEditing, autoFocus }) => {
+const Input = ({ placeholder, autoCorrect, autoCapitalize, secureTextEntry, value, onChangeText, onSubmitEditing, autoFocus, backgroundColor }) => {
   const { inputStyle, containerStyle } = styles;
 
+  var bgColor = backgroundColor;
+  if (!bgColor) {
+    bgColor = '#f0f0f0';
+  }
+
   return (
-      <View style={containerStyle}>
+      <View style={[containerStyle, {backgroundColor: bgColor}]}>
           <TextInput
               secureTextEntry={secureTextEntry}
               placeholder={placeholder}
               autoCorrect={autoCorrect}
               autoCapitalize={autoCapitalize}
-              style={inputStyle} 
+              style={inputStyle}
               value={value}
               onChangeText={onChangeText}
               onSubmitEditing={onSubmitEditing}
@@ -38,8 +43,7 @@ const styles = {
       paddingRight: 40,
       flexDirection: 'row',
       alignItems: 'center',
-      alignSelf: 'stretch',
-      backgroundColor: '#fff'
+      alignSelf: 'stretch'
   }
 };
 
