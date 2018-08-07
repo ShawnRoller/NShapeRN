@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, LayoutAnimation, Alert } from 'react-native';
+import { View, Image, Dimensions, LayoutAnimation, Alert } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
-import { Input, Button, Container, SubContainer, LoadingOverlay } from '../components/common';
+import { Input, Button, KBAvoidingContainer, SubContainer, LoadingOverlay } from '../components/common';
 import firebase from 'firebase';
 import firebaseconfig from '../config/firebaseconfig';
 import FirebaseAPI from '../components/api/FirebaseAPI';
@@ -174,6 +174,7 @@ class LoginScreen extends Component {
       <View>
         <SubContainer>
           <Input 
+            autoFocus
             placeholder='email'
             onChangeText={this.onEmailChange}
           />
@@ -199,10 +200,10 @@ class LoginScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.containerStyle}>
-        <Container style={{paddingBottom: height / 3}}>
+        <KBAvoidingContainer style={{marginBottom: height / 3}}>
           <Image source={require('../images/nshape-main-logo.png')} style={styles.logoStyle} resizeMode="contain" />
           {this.chooseRenderType()}
-        </Container>
+        </KBAvoidingContainer>
         {this.renderLoading()}
       </SafeAreaView>
     );
@@ -211,9 +212,10 @@ class LoginScreen extends Component {
 
 const styles = {
   containerStyle: {
-    paddingTop: 50,
+    flex: 1,
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'white'
   },
   logoStyle: {
     width: width,
