@@ -3,7 +3,7 @@ import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 
 const App = createStackNavigator({
-  Login: { screen: LoginScreen },
+  // Login: { screen: LoginScreen },
   Home: { screen: HomeScreen }
 });
 

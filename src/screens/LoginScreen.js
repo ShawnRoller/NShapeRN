@@ -5,6 +5,7 @@ import { Input, Button, KBAvoidingContainer, SubContainer, LoadingOverlay } from
 import firebase from 'firebase';
 import firebaseconfig from '../config/firebaseconfig';
 import FirebaseAPI from '../components/api/FirebaseAPI';
+import { ThemeColor } from '../components/Theme';
 
 const { width, height } = Dimensions.get('window');
 const LoginType = {
@@ -12,7 +13,6 @@ const LoginType = {
   login: 'Login',
   signup: 'Signup'
 };
-const ThemeColor = '#f10026'
 
 class LoginScreen extends Component {
   static navigationOptions = {
@@ -212,7 +212,7 @@ class LoginScreen extends Component {
     return (
       <SafeAreaView style={styles.containerStyle}>
         <KBAvoidingContainer style={{marginBottom: height / 3}}>
-          <Image source={require('../images/nshape-main-logo.png')} style={styles.logoStyle} resizeMode="contain" />
+          <Image source={require('../images/nshape-main-logo.png')} style={styles.logoStyle} resizeMode='contain' />
           {this.chooseRenderType()}
         </KBAvoidingContainer>
         {this.renderLoading()}
@@ -229,7 +229,7 @@ const styles = {
     backgroundColor: 'white'
   },
   logoStyle: {
-    width: width,
+    width,
     height: height / 4
   }
 };
