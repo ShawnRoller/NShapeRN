@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, Image, Dimensions, LayoutAnimation, Alert } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { Input, Button, KBAvoidingContainer, SubContainer, LoadingOverlay } from '../components/common';
@@ -14,7 +14,7 @@ const LoginType = {
   signup: 'Signup'
 };
 
-class LoginScreen extends Component {
+class LoginScreen extends PureComponent {
   static navigationOptions = {
     header: null
   };
