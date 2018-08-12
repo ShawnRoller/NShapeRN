@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { StackNavigator, DrawerNavigator } from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import LoginScreen from '../../screens/LoginScreen';
 import HomeScreen from '../../screens/HomeScreen';
 
@@ -8,28 +8,28 @@ openDrawer = (navigation) => {
   navigation.toggleDrawer();
 }
 
-const DrawerStack = DrawerNavigator({
+const DrawerStack = createDrawerNavigator({
   HomeScreen: { screen: HomeScreen }
 });
 
-const DrawerNavigation = StackNavigator({
+const DrawerNavigation = createStackNavigator({
   DrawerStack: { screen: DrawerStack }
 },
 {
-  headerMode: 'none',
+  headerMode: 'float',
   navigationOptions: ({ navigation }) => ({
     headerLeft: <Text onPress={() => this.openDrawer(navigation)}>Menu</Text>
   })
 });
 
-const LoginStack = StackNavigator({
+const LoginStack = createStackNavigator({
   LoginScreen: { screen: LoginScreen }
 }, 
 {
   headerMode: 'float'
 });
 
-const Navigator = StackNavigator({
+const Navigator = createStackNavigator({
   LoginStack: { screen : LoginStack },
   DrawerStack: { screen: DrawerNavigation }
 }, {
