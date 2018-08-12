@@ -1,10 +1,22 @@
-import { createStackNavigator } from 'react-navigation';
-import LoginScreen from './screens/LoginScreen';
-import HomeScreen from './screens/HomeScreen';
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import Navigator from './components/navigation/Navigator';
 
-const App = createStackNavigator({
-  // Login: { screen: LoginScreen },
-  Home: { screen: HomeScreen }
-});
+class App extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Navigator />
+      </View>
+    );
+  }
+}
+
+const styles = {
+  container: {
+    flex: 1,
+    backgroundColor: 'white'
+  }
+};
 
 export default App;

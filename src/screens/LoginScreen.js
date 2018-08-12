@@ -13,6 +13,7 @@ const LoginType = {
   login: 'Login',
   signup: 'Signup'
 };
+const TESTING = true;
 
 class LoginScreen extends PureComponent {
   static navigationOptions = {
@@ -45,6 +46,10 @@ class LoginScreen extends PureComponent {
   }
 
   componentDidMount() {
+    if (TESTING) {
+      this.setState({ loading: false });
+      return;
+    }
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({ loading: false });
       if (user) {
@@ -55,7 +60,8 @@ class LoginScreen extends PureComponent {
 
 
   navigateToHome() {
-    this.props.navigation.navigate('Home');
+    // this.props.navigation.navigate('Home');
+    this.props.navigation.navigate('DrawerStack');
   }
 
   onEmailChange = email => this.setState({ email });
@@ -74,6 +80,11 @@ class LoginScreen extends PureComponent {
   }
 
   onButtonPress() {
+
+    if (TESTING) {
+      this.navigateToHome();
+    }
+
     this.setState({ loading: true });
     switch (this.state.loginType) {
       case 'Select':
