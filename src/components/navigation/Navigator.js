@@ -3,12 +3,13 @@ import { View, TouchableOpacity, Image } from 'react-native';
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import LoginScreen from '../../screens/LoginScreen';
 import HomeScreen from '../../screens/HomeScreen';
+import SettingsScreen from '../../screens/SettingsScreen';
+import ProfileScreen from '../../screens/ProfileScreen';
 
 const TESTING = false;
 const TEST_ROUTE = 'DrawerNavigation';
 
 openDrawer = (navigation) => {
-  console.log(navigation.state);
   navigation.toggleDrawer();
 }
 
@@ -25,7 +26,9 @@ renderMenuButton = (navigation) => {
 }
 
 const DrawerStack = createDrawerNavigator({
-  HomeScreen: { screen: HomeScreen }
+  Home: { screen: HomeScreen },
+  Profile: { screen: ProfileScreen },
+  Settings: { screen: SettingsScreen }
 });
 
 const DrawerNavigation = createStackNavigator({
