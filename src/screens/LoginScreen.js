@@ -60,8 +60,7 @@ class LoginScreen extends PureComponent {
 
 
   navigateToHome() {
-    // this.props.navigation.navigate('Home');
-    this.props.navigation.navigate('DrawerStack');
+    this.props.navigation.navigate('DrawerNavigation');
   }
 
   onEmailChange = email => this.setState({ email });

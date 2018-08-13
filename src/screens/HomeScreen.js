@@ -43,6 +43,9 @@ class HomeScreen extends PureComponent {
         </View>
         <View style={styles.subViewStyle}>
           <SubContainer>
+            <Text style={styles.subTitleStyle}>How much time do you have?</Text>
+          </SubContainer>
+          <SubContainer>
             <Text style={styles.textStyle}>{this.state.minutes} minutes</Text>
           </SubContainer>
           <SubContainer>
@@ -98,7 +101,13 @@ const styles = {
     paddingTop: 10,
     paddingBottom: 10,
     alignSelf: 'center',
-    fontSize: 20
+    fontSize: 20,
+    color: ThemeColor
+  },
+  subTitleStyle: {
+    fontWeight: '600',
+    fontSize: 25,
+    alignSelf: 'center'
   }
 };
 
