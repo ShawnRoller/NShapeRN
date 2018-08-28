@@ -5,6 +5,7 @@ import LoginScreen from '../../screens/LoginScreen';
 import HomeScreen from '../../screens/HomeScreen';
 import SettingsScreen from '../../screens/SettingsScreen';
 import ProfileScreen from '../../screens/ProfileScreen';
+import SideMenu from '../../screens/SideMenu';
 
 const TESTING = false;
 const TEST_ROUTE = 'DrawerNavigation';
@@ -29,6 +30,10 @@ const DrawerStack = createDrawerNavigator({
   Home: { screen: HomeScreen },
   Profile: { screen: ProfileScreen },
   Settings: { screen: SettingsScreen }
+},
+{
+  // contentComponent: SideMenu,
+  drawerWidth: 200
 });
 
 const DrawerNavigation = createStackNavigator({
