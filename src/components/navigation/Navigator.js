@@ -7,7 +7,7 @@ import SettingsScreen from '../../screens/SettingsScreen';
 import ProfileScreen from '../../screens/ProfileScreen';
 import SideMenu from '../../screens/SideMenu';
 
-const TESTING = false;
+const TESTING = true;
 const TEST_ROUTE = 'DrawerNavigation';
 
 openDrawer = (navigation) => {
@@ -32,7 +32,7 @@ const DrawerStack = createDrawerNavigator({
   Settings: { screen: SettingsScreen }
 },
 {
-  // contentComponent: SideMenu,
+  contentComponent: SideMenu,
   drawerWidth: 200
 });
 

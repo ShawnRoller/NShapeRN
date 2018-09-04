@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
 class SideMenu extends PureComponent {
-  navigateToScreen = (route) => {
+  navigateToScreen = (route) => () => {
     const navigateAction = NavigationActions.navigate({
       routeName: route
     });
@@ -12,20 +12,29 @@ class SideMenu extends PureComponent {
 
   render() {
     return (
-      <View>
+      <View style={styles.containerStyle}>
         <View>
-          <Text onPress={this.navigateToScreen('Home')}>Home</Text>
+          <Button color='#841584' title='Home' onPress={this.navigateToScreen('Home')}/>
         </View>
         <View>
-          <Text onPress={this.navigateToScreen('Profile')}>Profile</Text>
+          <Button color='#841584' title='Profile' onPress={this.navigateToScreen('Profile')}/>
         </View>
         <View>
-          <Text onPress={this.navigateToScreen('Settings')}>Settings</Text>
+          <Button color='#841584' title='Settings' onPress={this.navigateToScreen('Settings')}/>
         </View>
       </View>
     );
   }
+}
 
+const styles = {
+  containerStyle: {
+    paddingTop: 35,
+    flex: 1
+  },
+  buttonStyle: {
+    color: '#841584'
+  }
 }
 
 export default SideMenu;
