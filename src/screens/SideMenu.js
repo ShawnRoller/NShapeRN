@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { NavigationActions } from 'react-navigation';
+import { ThemeColor } from '../components/Theme';
 
 class SideMenu extends PureComponent {
   navigateToScreen = (route) => () => {
@@ -13,15 +14,15 @@ class SideMenu extends PureComponent {
   render() {
     return (
       <View style={styles.containerStyle}>
-        <View>
-          <Button color='#841584' title='Home' onPress={this.navigateToScreen('Home')}/>
-        </View>
-        <View>
-          <Button color='#841584' title='Profile' onPress={this.navigateToScreen('Profile')}/>
-        </View>
-        <View>
-          <Button color='#841584' title='Settings' onPress={this.navigateToScreen('Settings')}/>
-        </View>
+        <TouchableOpacity style={styles.buttonStyle} onPress={this.navigateToScreen('Home')}>
+          <Text style={styles.textStyle}>Home</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonStyle} onPress={this.navigateToScreen('Profile')}>
+          <Text style={styles.textStyle}>Profile</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonStyle} onPress={this.navigateToScreen('Settings')}>
+          <Text style={styles.textStyle}>Settings</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -29,11 +30,20 @@ class SideMenu extends PureComponent {
 
 const styles = {
   containerStyle: {
-    paddingTop: 35,
     flex: 1
   },
   buttonStyle: {
-    color: '#841584'
+    backgroundColor: '#fff',
+    height: 70,
+    justifyContent: 'center',
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+  },
+  textStyle: {
+    alignSelf: 'center',
+    fontSize: 36,
+    color: '#4a4a4a',
+    // fontFamily: 'Gotham-Book'
   }
 }
 

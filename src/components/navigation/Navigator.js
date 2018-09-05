@@ -33,7 +33,7 @@ const DrawerStack = createDrawerNavigator({
 },
 {
   contentComponent: SideMenu,
-  drawerWidth: 200
+  drawerWidth: 300
 });
 
 const DrawerNavigation = createStackNavigator({
