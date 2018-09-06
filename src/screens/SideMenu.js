@@ -1,9 +1,28 @@
 import React, { PureComponent } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { ThemeColor } from '../components/Theme';
 
 class SideMenu extends PureComponent {
+  constructor(props) {
+    super(props);
+    // console.log(props.navigation._childrenNavigation.Home.isFocused());
+    // console.log(props.navigation._childrenNavigation.Profile.isFocused());
+    // this.renderMenuItems(this.props.navigation._childrenNavigation);
+    
+    var items = [];
+    for (child in props.navigation._childrenNavigation) {
+      items.push(child);
+    }
+
+    this.state = {
+      items
+    }
+
+    console.log(items);
+
+  }
+
   navigateToScreen = (route) => () => {
     const navigateAction = NavigationActions.navigate({
       routeName: route
@@ -11,18 +30,33 @@ class SideMenu extends PureComponent {
     this.props.navigation.dispatch(navigateAction);
   }
 
+  renderMenuItems(children) {
+    console.log(children);
+    for (child in children) {
+
+      console.log(children[child].isFocused());
+    }
+  }
+
+  renderItem = (item) => {
+    console.log(item);
+    // const textStyle = item.isFocused() ? styles.focusedTextStyle : styles.textStyle;
+    return (
+      <TouchableOpacity keyExtractor={item.item.index} style={styles.buttonStyle} onPress={this.navigateToScreen(item.item)}>
+        <Text style={styles.textStyle}>{item.item}</Text>
+      </TouchableOpacity>
+    );
+  }
+
   render() {
     return (
       <View style={styles.containerStyle}>
-        <TouchableOpacity style={styles.buttonStyle} onPress={this.navigateToScreen('Home')}>
-          <Text style={styles.textStyle}>Home</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonStyle} onPress={this.navigateToScreen('Profile')}>
-          <Text style={styles.textStyle}>Profile</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonStyle} onPress={this.navigateToScreen('Settings')}>
-          <Text style={styles.textStyle}>Settings</Text>
-        </TouchableOpacity>
+        <FlatList
+          data={this.state.items}
+          renderItem={( item ) => (
+            this.renderItem(item)
+          )}
+        />
       </View>
     );
   }
@@ -43,7 +77,13 @@ const styles = {
     alignSelf: 'center',
     fontSize: 36,
     color: '#4a4a4a',
-    // fontFamily: 'Gotham-Book'
+    fontWeight: '300'
+  },
+  focusedTextStyle: {
+    alignSelf: 'center',
+    fontSize: 36,
+    color: ThemeColor,
+    fontWeight: '300'
   }
 }
 

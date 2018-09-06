@@ -32,8 +32,8 @@ const DrawerStack = createDrawerNavigator({
   Settings: { screen: SettingsScreen }
 },
 {
-  contentComponent: SideMenu,
-  drawerWidth: 300
+  contentComponent: ({ navigation }) => ( <SideMenu navigation={navigation}/> ),
+  drawerWidth: 250
 });
 
 const DrawerNavigation = createStackNavigator({
