@@ -1,62 +1,73 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
-import { NavigationActions } from 'react-navigation';
+import { DrawerItems } from 'react-navigation';
 import { ThemeColor } from '../components/Theme';
 
-class SideMenu extends PureComponent {
+class SideMenu extends Component {
   constructor(props) {
     super(props);
-    // console.log(props.navigation._childrenNavigation.Home.isFocused());
-    // console.log(props.navigation._childrenNavigation.Profile.isFocused());
-    // this.renderMenuItems(this.props.navigation._childrenNavigation);
     
     var items = [];
+    var index = 0;
     for (child in props.navigation._childrenNavigation) {
-      items.push(child);
+      const item = { child, index };
+      items.push(item);
+      index++;
     }
 
     this.state = {
       items
     }
+  }
 
-    console.log(items);
-
+  componentWillUpdate() {
+    console.log(this.props.activeItemKey);
+    this.render();
   }
 
   navigateToScreen = (route) => () => {
-    const navigateAction = NavigationActions.navigate({
+    const navigateAction = this.props.navigation.navigate({
       routeName: route
     });
     this.props.navigation.dispatch(navigateAction);
   }
 
-  renderMenuItems(children) {
-    console.log(children);
-    for (child in children) {
-
-      console.log(children[child].isFocused());
-    }
+  renderItem = (item) => {
+    const textStyle = item.child === this.props.activeItemKey ? styles.focusedTextStyle : styles.textStyle;
+    console.log(item.child + this.props.activeItemKey);
+    return (
+      <TouchableOpacity style={styles.buttonStyle} onPress={this.navigateToScreen(item.child)}>
+        <Text style={textStyle}>{item.child}</Text>
+      </TouchableOpacity>
+    );
   }
 
-  renderItem = (item) => {
-    console.log(item);
-    // const textStyle = item.isFocused() ? styles.focusedTextStyle : styles.textStyle;
-    return (
-      <TouchableOpacity keyExtractor={item.item.index} style={styles.buttonStyle} onPress={this.navigateToScreen(item.item)}>
-        <Text style={styles.textStyle}>{item.item}</Text>
-      </TouchableOpacity>
+  getStyle = (item) => {
+    return ( 
+      item === this.props.activeItemKey ? styles.focusedTextStyle : styles.textStyle
     );
   }
 
   render() {
     return (
       <View style={styles.containerStyle}>
-        <FlatList
+        {/* <FlatList
           data={this.state.items}
+          extraData={this.state}
           renderItem={( item ) => (
-            this.renderItem(item)
+            this.renderItem(item.item)
           )}
-        />
+          keyExtractor={ item => item.index.toString() }
+        /> */}
+      <TouchableOpacity style={styles.buttonStyle} onPress={this.navigateToScreen('Home')}>
+        <Text style={this.getStyle('Home')}>Home</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.buttonStyle} onPress={this.navigateToScreen('Profile')}>
+        <Text style={this.getStyle('Profile')}>Profile</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.buttonStyle} onPress={this.navigateToScreen('Settings')}>
+        <Text style={this.getStyle('Settings')}>Settings</Text>
+      </TouchableOpacity>
       </View>
     );
   }

@@ -32,8 +32,13 @@ const DrawerStack = createDrawerNavigator({
   Settings: { screen: SettingsScreen }
 },
 {
-  contentComponent: ({ navigation }) => ( <SideMenu navigation={navigation}/> ),
-  drawerWidth: 250
+  // contentComponent: ({ navigation }) => ( <SideMenu navigation={navigation}/> ),
+  contentComponent: SideMenu,
+  drawerWidth: 250,
+  // contentOptions: {
+  //   activeTintColor: 'red',
+  //   style: focusedTextStyle
+  // }
 });
 
 const DrawerNavigation = createStackNavigator({
