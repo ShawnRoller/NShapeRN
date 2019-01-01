@@ -3,6 +3,7 @@ import { Image, Dimensions, Slider, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { ThemeColor } from '../components/Theme';
 import { Button, SubContainer } from '../components/common';
+import StartWorkoutScreen from './StartWorkoutScreen';
 
 const { width, height } = Dimensions.get('window');
 
@@ -23,11 +24,19 @@ class HomeScreen extends PureComponent {
     this.refs.slider.setNativeProps({ value: this.state.minutes });
   }
 
+  navigateToScreen = (route) => () => {
+    const navigateAction = this.props.navigation.navigate({
+      routeName: route
+    });
+    this.props.navigation.dispatch(navigateAction);
+  }
+
   onSliderChanged(value) {
     this.setState({ minutes: value });
   }
 
   onStartButtonPressed() {
+    // this.navigateToScreen(StartWorkoutScreen);
     console.log('start');
   }
 

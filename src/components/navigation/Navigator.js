@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, Image } from 'react-native';
+import { TouchableOpacity, Image } from 'react-native';
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import LoginScreen from '../../screens/LoginScreen';
 import HomeScreen from '../../screens/HomeScreen';
@@ -19,7 +19,7 @@ renderMenuButton = (navigation) => {
     <TouchableOpacity onPress={() => this.openDrawer(navigation)}>
       <Image 
         source={require('../../images/NSettings.png')} 
-        style={styles.menuStyle} 
+        style={styles.menuButtonStyle} 
         resizeMode='contain' 
       />
     </TouchableOpacity>
@@ -68,7 +68,7 @@ const Navigator = createStackNavigator({
 });
 
 const styles = {
-  menuStyle: {
+  menuButtonStyle: {
     marginLeft: 10,
     width: 30,
     height: 30
