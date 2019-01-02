@@ -6,6 +6,8 @@ import HomeScreen from '../../screens/HomeScreen';
 import SettingsScreen from '../../screens/SettingsScreen';
 import ProfileScreen from '../../screens/ProfileScreen';
 import SideMenu from '../../screens/SideMenu';
+import StartWorkoutScreen from '../../screens/StartWorkoutScreen';
+import CustomWorkoutScreen from '../../screens/CustomWorkoutScreen';
 
 const TESTING = true;
 const TEST_ROUTE = 'DrawerNavigation';
@@ -26,15 +28,26 @@ renderMenuButton = (navigation) => {
   );
 }
 
+const MainStack = createStackNavigator({
+  StartWorkout: StartWorkoutScreen,
+  CustomWorkout: CustomWorkoutScreen
+},
+{
+  headerMode: 'none'
+})
+
 const DrawerStack = createDrawerNavigator({
   Home: { screen: HomeScreen },
   Profile: { screen: ProfileScreen },
-  Settings: { screen: SettingsScreen }
+  Settings: { screen: SettingsScreen },
+  StartWorkout: { screen: StartWorkoutScreen },
+  CustomWorkout: { screen: CustomWorkoutScreen }
 },
 {
   // contentComponent: ({ navigation }) => ( <SideMenu navigation={navigation}/> ),
   contentComponent: SideMenu,
   drawerWidth: 250,
+  initialRouteName: 'Home'
   // contentOptions: {
   //   activeTintColor: 'red',
   //   style: focusedTextStyle
@@ -42,11 +55,12 @@ const DrawerStack = createDrawerNavigator({
 });
 
 const DrawerNavigation = createStackNavigator({
-  DrawerStack: { screen: DrawerStack }
+  DrawerStack: { screen: DrawerStack },
+  // MainStack: MainStack
 },
 {
   headerMode: 'float',
-  gesturesEnabled: false,
+  gesturesEnabled: true,
   navigationOptions: ({ navigation }) => ({
     headerLeft: this.renderMenuButton(navigation)
   })
