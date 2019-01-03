@@ -17,6 +17,7 @@ openDrawer = (navigation) => {
 }
 
 renderMenuButton = (navigation) => {
+  console.log(navigation);
   return (
     <TouchableOpacity onPress={() => this.openDrawer(navigation)}>
       <Image 
@@ -39,31 +40,26 @@ const MainStack = createStackNavigator({
 const DrawerStack = createDrawerNavigator({
   Home: { screen: HomeScreen },
   Profile: { screen: ProfileScreen },
-  Settings: { screen: SettingsScreen },
-  StartWorkout: { screen: StartWorkoutScreen },
-  CustomWorkout: { screen: CustomWorkoutScreen }
+  Settings: { screen: SettingsScreen }
 },
 {
-  // contentComponent: ({ navigation }) => ( <SideMenu navigation={navigation}/> ),
   contentComponent: SideMenu,
   drawerWidth: 250,
   initialRouteName: 'Home'
-  // contentOptions: {
-  //   activeTintColor: 'red',
-  //   style: focusedTextStyle
-  // }
 });
 
 const DrawerNavigation = createStackNavigator({
-  DrawerStack: { screen: DrawerStack },
-  // MainStack: MainStack
+  DrawerStack: {
+    screen: DrawerStack,
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: this.renderMenuButton(navigation)
+    })
+  },
+  MainStack
 },
 {
   headerMode: 'float',
   gesturesEnabled: true,
-  navigationOptions: ({ navigation }) => ({
-    headerLeft: this.renderMenuButton(navigation)
-  })
 });
 
 const LoginStack = createStackNavigator({
