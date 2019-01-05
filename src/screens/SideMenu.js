@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, FlatList } from 'react-native';
-import { DrawerItems } from 'react-navigation';
+import { View, Text, TouchableOpacity, FlatList, Alert } from 'react-native';
+// import { DrawerItems } from 'react-navigation';
 import { ThemeColor } from '../components/Theme';
+import FirebaseAPI from '../components/api/FirebaseAPI';
 
 class SideMenu extends Component {
   constructor(props) {
@@ -30,6 +31,37 @@ class SideMenu extends Component {
       routeName: route
     });
     this.props.navigation.dispatch(navigateAction);
+  }
+
+  attemptLogout = () => {
+    var api = new FirebaseAPI({
+      success: function() {
+        this.props.navigation.popToTop();
+      }.bind(this),
+      failure: function(error) {
+        this.logoutFailure(error);
+      }.bind(this)
+    });
+
+    try {
+      api.logout();
+    } catch (error) {
+      console.log(`Could not connect to firebase: ${error}`);
+    }
+  }
+
+  logoutFailure = (error) => {
+    if (error) {
+      console.log('Error: ' + JSON.stringify(error));
+      Alert.alert('Whoops!', error);
+    }
+    else {
+      Alert.alert('Whoops!', 'Something went wrong.');
+    }
+  }
+
+  onLogoutPressed = () => {
+    this.attemptLogout();
   }
 
   renderItem = (item) => {
@@ -69,7 +101,7 @@ class SideMenu extends Component {
           <Text style={this.getStyle('Settings')}>Settings</Text>
         </TouchableOpacity>
         <View style={styles.footerContainerStyle}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this.onLogoutPressed}>
             <Text style={styles.logoutTextStyle}>Logout</Text>
           </TouchableOpacity>
           <Text style={styles.versionTextStyle}>v0.1.0</Text>

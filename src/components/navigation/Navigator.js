@@ -9,7 +9,7 @@ import SideMenu from '../../screens/SideMenu';
 import StartWorkoutScreen from '../../screens/StartWorkoutScreen';
 import CustomWorkoutScreen from '../../screens/CustomWorkoutScreen';
 
-const TESTING = true;
+const TESTING = false;
 const TEST_ROUTE = 'DrawerNavigation';
 
 openDrawer = (navigation) => {

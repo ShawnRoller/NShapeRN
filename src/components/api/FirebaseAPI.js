@@ -25,6 +25,12 @@ class FirebaseAPI extends PureComponent {
       .catch((error) => this.loginUserFailure(error));
   };
 
+  logout = () => {
+    firebase.auth().signOut()
+      .then(this.logoutSuccess())
+      .catch(error => this.logoutFailure(error));
+  };
+
   testFunc = (user) => {
     console.log(`test func: ${user}`);
   }
@@ -37,6 +43,15 @@ class FirebaseAPI extends PureComponent {
   loginUserFailure = (error) => {
     this.props.failure(`Login failed: ${error}`);
   };
+
+  logoutSuccess = () => {
+    console.log('user logged out successfully');
+    this.props.success();
+  };
+
+  logoutFailure = (error) => {
+    this.props.failure(`Logout failed: ${error}`);
+  }
 
 }
 

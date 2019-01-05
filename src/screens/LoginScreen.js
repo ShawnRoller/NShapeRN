@@ -60,6 +60,7 @@ class LoginScreen extends PureComponent {
 
 
   navigateToHome() {
+    this.setState({ loginType: LoginType.select });
     this.props.navigation.navigate('DrawerNavigation');
   }
 
