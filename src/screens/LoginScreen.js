@@ -59,7 +59,7 @@ class LoginScreen extends PureComponent {
   }
 
 
-  navigateToHome() {
+  navigateToHome = () => {
     this.setState({ loginType: LoginType.select });
     this.props.navigation.navigate('DrawerNavigation');
   }
@@ -67,19 +67,19 @@ class LoginScreen extends PureComponent {
   onEmailChange = email => this.setState({ email });
   onPasswordChange = password => this.setState({ password });
 
-  onCancelPress() {
+  onCancelPress = () => {
     this.setState({ loginType: LoginType.select });
   }
 
-  onLoginPress() {
+  onLoginPress = () => {
     this.setState({ loginType: LoginType.login });
   }
 
-  onSignupPress() {
+  onSignupPress = () => {
     this.setState({ loginType: LoginType.signup });
   }
 
-  onButtonPress() {
+  onButtonPress = () => {
 
     if (TESTING) {
       this.navigateToHome();
@@ -98,16 +98,16 @@ class LoginScreen extends PureComponent {
     }
   }
 
-  attemptLogin() {
+  attemptLogin = () => {
     const { email, password } = this.state;
 
     var api = new FirebaseAPI({
-      success: function(user) {
+      success: (user) => {
         this.loginSuccess();
-      }.bind(this),
-      failure: function(error) {
+      },
+      failure: (error) => {
         this.loginFailure(error);
-      }.bind(this)
+      }
     });
 
     try {
@@ -117,16 +117,16 @@ class LoginScreen extends PureComponent {
     }
   }
 
-  attemptSignUp() {
+  attemptSignUp = () => {
     const { email, password } = this.state;
 
     var api = new FirebaseAPI({
-      success: function(user) {
+      success: (user) => {
         this.loginSuccess();
-      }.bind(this),
-      failure: function(error) {
+      },
+      failure: (error) => {
         this.loginFailure(error);
-      }.bind(this)
+      }
     });
 
     try {
@@ -152,7 +152,7 @@ class LoginScreen extends PureComponent {
     }
   }
 
-  chooseRenderType() {
+  chooseRenderType = () => {
     var render;
     switch (this.state.loginType) {
       case 'Select':
@@ -168,7 +168,7 @@ class LoginScreen extends PureComponent {
     return render;
   }
 
-  renderLoading() {
+  renderLoading = () => {
     if (this.state.loading) {
       return (
         <LoadingOverlay />
@@ -176,20 +176,20 @@ class LoginScreen extends PureComponent {
     }
   }
 
-  renderSelectState() {
+  renderSelectState = () => {
     return (
       <View>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onLoginPress.bind(this)}>Log In</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onLoginPress}>Log In</Button>
         </SubContainer>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onSignupPress.bind(this)}>Sign Up</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onSignupPress}>Sign Up</Button>
         </SubContainer>
       </View>
     );
   }
 
-  renderLoginState() {
+  renderLoginState = () => {
     return (
       <View>
         <SubContainer>
@@ -206,14 +206,14 @@ class LoginScreen extends PureComponent {
               placeholder='password'
               secureTextEntry={true}
               onChangeText={this.onPasswordChange}
-              onSubmitEditing={this.onButtonPress.bind(this)}
+              onSubmitEditing={this.onButtonPress}
             />
         </SubContainer>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onButtonPress.bind(this)}>{this.state.loginType}</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onButtonPress}>{this.state.loginType}</Button>
         </SubContainer>
         <SubContainer>
-          <Button textColor='#666666' fontSize={15} onPress={this.onCancelPress.bind(this)}>cancel</Button>
+          <Button textColor='#666666' fontSize={15} onPress={this.onCancelPress}>cancel</Button>
         </SubContainer>
       </View>
     );

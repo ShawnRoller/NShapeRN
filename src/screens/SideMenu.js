@@ -33,15 +33,15 @@ class SideMenu extends Component {
     this.props.navigation.dispatch(navigateAction);
   }
 
-  attemptLogout = () => {
-    var api = new FirebaseAPI({
-      success: function() {
-        this.props.navigation.popToTop();
-      }.bind(this),
-      failure: function(error) {
-        this.logoutFailure(error);
-      }.bind(this)
-    });
+    attemptLogout = () => {
+      var api = new FirebaseAPI({
+        success: () => {
+          this.props.navigation.popToTop();
+        },
+        failure: (error) => {
+          this.logoutFailure(error);
+        }
+      });
 
     try {
       api.logout();

@@ -34,12 +34,12 @@ class HomeScreen extends PureComponent {
     this.setState({ minutes: value });
   }
 
-  onStartButtonPressed() {
+  onStartButtonPressed = () => {
     console.log('start');
     this.navigateToScreen('StartWorkout');
   }
 
-  onCustomButtonPressed() {
+  onCustomButtonPressed = () => {
     console.log('custom');
     this.navigateToScreen('CustomWorkout');
   }
@@ -72,10 +72,10 @@ class HomeScreen extends PureComponent {
         </View>
         <View style={styles.subViewStyle}>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onStartButtonPressed.bind(this)}>Start Workout</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onStartButtonPressed}>Start Workout</Button>
         </SubContainer>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onCustomButtonPressed.bind(this)}>Custom Workout</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onCustomButtonPressed}>Custom Workout</Button>
         </SubContainer>
         </View>
       </SafeAreaView>
