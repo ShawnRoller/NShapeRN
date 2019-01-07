@@ -8,8 +8,10 @@ import ProfileScreen from '../../screens/ProfileScreen';
 import SideMenu from '../../screens/SideMenu';
 import StartWorkoutScreen from '../../screens/StartWorkoutScreen';
 import CustomWorkoutScreen from '../../screens/CustomWorkoutScreen';
+import SetupExercisesScreen from '../../screens/SetupExercisesScreen';
+import CreditsScreen from '../../screens/CreditsScreen';
 
-const TESTING = false;
+const TESTING = true;
 const TEST_ROUTE = 'DrawerNavigation';
 
 openDrawer = (navigation) => {
@@ -17,7 +19,6 @@ openDrawer = (navigation) => {
 }
 
 renderMenuButton = (navigation) => {
-  console.log(navigation);
   return (
     <TouchableOpacity onPress={() => this.openDrawer(navigation)}>
       <Image 
@@ -31,7 +32,9 @@ renderMenuButton = (navigation) => {
 
 const MainStack = createStackNavigator({
   StartWorkout: StartWorkoutScreen,
-  CustomWorkout: CustomWorkoutScreen
+  CustomWorkout: CustomWorkoutScreen,
+  SetupExercises: SetupExercisesScreen,
+  Credits: CreditsScreen,
 },
 {
   headerMode: 'none'
