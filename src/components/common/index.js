@@ -5,3 +5,5 @@ export * from './SubContainer';
 export * from './Spinner';
 export * from './LoadingOverlay';
 export * from './KBAvoidingContainer';
+export * from './SimpleCell';
+
