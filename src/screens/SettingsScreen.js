@@ -22,7 +22,7 @@ class SettingsScreen extends PureComponent {
 
   renderItem = ({item}) => {
     return (
-      <SimpleCell>{item.key}</SimpleCell>
+      <SimpleCell onPressItem={this.testNavigate} backgroundColor='#fff' height={100}>{item.key}</SimpleCell>
     );
   }
 

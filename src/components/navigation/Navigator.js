@@ -13,6 +13,7 @@ import CreditsScreen from '../../screens/CreditsScreen';
 
 const TESTING = true;
 const TEST_ROUTE = 'DrawerNavigation';
+const TEST_SCREEN = 'Settings';
 
 openDrawer = (navigation) => {
   navigation.toggleDrawer();
@@ -48,7 +49,7 @@ const DrawerStack = createDrawerNavigator({
 {
   contentComponent: SideMenu,
   drawerWidth: 250,
-  initialRouteName: 'Home'
+  initialRouteName: TESTING ? TEST_SCREEN :'Home'
 });
 
 const DrawerNavigation = createStackNavigator({

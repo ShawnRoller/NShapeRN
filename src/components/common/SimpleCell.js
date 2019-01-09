@@ -1,14 +1,27 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-const SimpleCell = ({ onPressItem, children }) => {
+const SimpleCell = ({ onPressItem, backgroundColor, textColor, fontSize, alignSelf, textMarginLeft, height, children }) => {
   return (
-    <View>
-      <Text>
+    <TouchableOpacity onPress={onPressItem} style={[styles.containerStyle, {backgroundColor}, {height}]}>
+      <Text style={[styles.textStyle, {color: textColor}, {fontSize}, {alignSelf}, {marginLeft: textMarginLeft}]}>
         {children}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 }
+
+const styles = StyleSheet.create({
+  containerStyle: {
+    flex: 1,
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+    height: 50,
+    justifyContent: 'center'
+  },
+  textStyle: {
+    fontWeight: '600',
+  }
+});
 
 export { SimpleCell };
