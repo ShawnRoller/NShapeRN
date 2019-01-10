@@ -3,26 +3,44 @@ import { View, Text, FlatList } from 'react-native';
 import { Button, SimpleCell } from '../components/common/';
 
 const CELLS = [
-  {key: 'test1'},
-  {key: 'test2'}
+  {id: '1', title: 'Exercises', screen: 'SetupExercises', toggle: false},
+  {id: '2', title: 'Sounds', screen: null, toggle: true},
+  {id: '3', title: 'Credits', screen: 'Credits', toggle: false},
 ]
 
 class SettingsScreen extends PureComponent {
 
-  navigateToScreen = (route) => {
+  _navigateToScreen = (route) => {
     const navigateAction = this.props.navigation.navigate({
       routeName: route
     });
     this.props.navigation.dispatch(navigateAction);
   }
 
-  testNavigate = () => {
-    this.navigateToScreen('SetupExercises');
+  _keyExtractor = (item, index) => item.id;
+
+  _onItemTap = (item) => {
+    if (item.screen && !item.toggle) {
+      this._navigateToScreen(item.screen);
+    }
+    else if (item.toggle) {
+      // Handle toggling the switch
+    }
   }
 
   renderItem = ({item}) => {
     return (
-      <SimpleCell onPressItem={this.testNavigate} backgroundColor='#fff' height={100}>{item.key}</SimpleCell>
+      <SimpleCell 
+        key={item.id}
+        onPressItem={this._onItemTap} 
+        backgroundColor='#fff' 
+        textColor='#ddd'
+        textMarginLeft={100}
+        height={50}
+        fontSize={30}
+      >
+        {item.title}
+      </SimpleCell>
     );
   }
 
@@ -34,6 +52,7 @@ class SettingsScreen extends PureComponent {
         <FlatList
           data={CELLS}
           renderItem={this.renderItem}
+          keyExtractor={this._keyExtractor}
         />
       </View>
     );
