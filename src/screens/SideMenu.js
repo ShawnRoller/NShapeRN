@@ -26,22 +26,22 @@ class SideMenu extends Component {
     this.render();
   }
 
-  navigateToScreen = (route) => () => {
+  _navigateToScreen = (route) => () => {
     const navigateAction = this.props.navigation.navigate({
       routeName: route
     });
     this.props.navigation.dispatch(navigateAction);
   }
 
-    attemptLogout = () => {
-      var api = new FirebaseAPI({
-        success: () => {
-          this.props.navigation.popToTop();
-        },
-        failure: (error) => {
-          this.logoutFailure(error);
-        }
-      });
+  _attemptLogout = () => {
+    var api = new FirebaseAPI({
+      success: () => {
+        this.props.navigation.popToTop();
+      },
+      failure: (error) => {
+        this._logoutFailure(error);
+      }
+    });
 
     try {
       api.logout();
@@ -50,7 +50,7 @@ class SideMenu extends Component {
     }
   }
 
-  logoutFailure = (error) => {
+  _logoutFailure = (error) => {
     if (error) {
       console.log('Error: ' + JSON.stringify(error));
       Alert.alert('Whoops!', error);
@@ -60,21 +60,21 @@ class SideMenu extends Component {
     }
   }
 
-  onLogoutPressed = () => {
-    this.attemptLogout();
+  _onLogoutPressed = () => {
+    this._attemptLogout();
   }
 
-  renderItem = (item) => {
+  _renderItem = (item) => {
     const textStyle = item.child === this.props.activeItemKey ? styles.focusedTextStyle : styles.textStyle;
     console.log(item.child + this.props.activeItemKey);
     return (
-      <TouchableOpacity style={styles.buttonStyle} onPress={this.navigateToScreen(item.child)}>
+      <TouchableOpacity style={styles.buttonStyle} onPress={this._navigateToScreen(item.child)}>
         <Text style={textStyle}>{item.child}</Text>
       </TouchableOpacity>
     );
   }
 
-  getStyle = (item) => {
+  _getStyle = (item) => {
     return ( 
       item === this.props.activeItemKey ? styles.focusedTextStyle : styles.textStyle
     );
@@ -91,17 +91,17 @@ class SideMenu extends Component {
             )}
             keyExtractor={ item => item.index.toString() }
           /> */}
-        <TouchableOpacity style={styles.buttonStyle} onPress={this.navigateToScreen('Home')}>
+        <TouchableOpacity style={styles.buttonStyle} onPress={this._navigateToScreen('Home')}>
           <Text style={this.getStyle('Home')}>Home</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonStyle} onPress={this.navigateToScreen('Profile')}>
+        <TouchableOpacity style={styles.buttonStyle} onPress={this._navigateToScreen('Profile')}>
           <Text style={this.getStyle('Profile')}>Profile</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonStyle} onPress={this.navigateToScreen('Settings')}>
+        <TouchableOpacity style={styles.buttonStyle} onPress={this._navigateToScreen('Settings')}>
           <Text style={this.getStyle('Settings')}>Settings</Text>
         </TouchableOpacity>
         <View style={styles.footerContainerStyle}>
-          <TouchableOpacity onPress={this.onLogoutPressed}>
+          <TouchableOpacity onPress={this._onLogoutPressed}>
             <Text style={styles.logoutTextStyle}>Logout</Text>
           </TouchableOpacity>
           <Text style={styles.versionTextStyle}>v0.1.0</Text>

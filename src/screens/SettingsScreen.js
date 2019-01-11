@@ -28,7 +28,7 @@ class SettingsScreen extends PureComponent {
     }
   }
 
-  renderItem = ({item}) => {
+  _renderItem = ({item}) => {
     return (
       <SimpleCell 
         key={item.id}
@@ -48,10 +48,10 @@ class SettingsScreen extends PureComponent {
     return (
       <View style={{flex:1}}>
         <Text>This is the settings screen This is the settings screen This is the settings screen This is the settings screen</Text>
-        <Button backgroundColor='#000' textColor='#fff' shadow fontSize={20} onPress={this.testNavigate}>This is a screen</Button>
+        <Button backgroundColor='#000' textColor='#fff' shadow fontSize={20}>This is a screen</Button>
         <FlatList
           data={CELLS}
-          renderItem={this.renderItem}
+          renderItem={this._renderItem}
           keyExtractor={this._keyExtractor}
         />
       </View>

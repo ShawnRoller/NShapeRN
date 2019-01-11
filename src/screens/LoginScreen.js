@@ -53,36 +53,36 @@ class LoginScreen extends PureComponent {
     firebase.auth().onAuthStateChanged((user) => {
       this.setState({ loading: false });
       if (user) {
-        this.navigateToHome();
+        this._navigateToHome();
       }
     });
   }
 
 
-  navigateToHome = () => {
+  _navigateToHome = () => {
     this.setState({ loginType: LoginType.select });
     this.props.navigation.navigate('DrawerNavigation');
   }
 
-  onEmailChange = email => this.setState({ email });
-  onPasswordChange = password => this.setState({ password });
+  _onEmailChange = email => this.setState({ email });
+  _onPasswordChange = password => this.setState({ password });
 
-  onCancelPress = () => {
+  _onCancelPress = () => {
     this.setState({ loginType: LoginType.select });
   }
 
-  onLoginPress = () => {
+  _onLoginPress = () => {
     this.setState({ loginType: LoginType.login });
   }
 
-  onSignupPress = () => {
+  _onSignupPress = () => {
     this.setState({ loginType: LoginType.signup });
   }
 
-  onButtonPress = () => {
+  _onButtonPress = () => {
 
     if (TESTING) {
-      this.navigateToHome();
+      this._navigateToHome();
     }
 
     this.setState({ loading: true });
@@ -90,23 +90,23 @@ class LoginScreen extends PureComponent {
       case 'Select':
         break;
       case 'Login':
-        this.attemptLogin();
+        this._attemptLogin();
         break;
       case 'Signup':
-        this.attemptSignUp();
+        this._attemptSignUp();
         break;
     }
   }
 
-  attemptLogin = () => {
+  _attemptLogin = () => {
     const { email, password } = this.state;
 
     var api = new FirebaseAPI({
       success: (user) => {
-        this.loginSuccess();
+        this._loginSuccess();
       },
       failure: (error) => {
-        this.loginFailure(error);
+        this._loginFailure(error);
       }
     });
 
@@ -117,15 +117,15 @@ class LoginScreen extends PureComponent {
     }
   }
 
-  attemptSignUp = () => {
+  _attemptSignUp = () => {
     const { email, password } = this.state;
 
     var api = new FirebaseAPI({
       success: (user) => {
-        this.loginSuccess();
+        this._loginSuccess();
       },
       failure: (error) => {
-        this.loginFailure(error);
+        this._loginFailure(error);
       }
     });
 
@@ -136,12 +136,12 @@ class LoginScreen extends PureComponent {
     }
   }
 
-  loginSuccess = () => {
+  _loginSuccess = () => {
     this.setState({ loading: false });
-    this.navigateToHome();
+    this._navigateToHome();
   }
 
-  loginFailure = (error) => {
+  _loginFailure = (error) => {
     this.setState({ loading: false });
     if (error) {
       console.log('Error: ' + JSON.stringify(error));
@@ -152,23 +152,23 @@ class LoginScreen extends PureComponent {
     }
   }
 
-  chooseRenderType = () => {
+  _chooseRenderType = () => {
     var render;
     switch (this.state.loginType) {
       case 'Select':
-        render = this.renderSelectState();
+        render = this._renderSelectState();
         break;
       case 'Login':
-        render = this.renderLoginState();
+        render = this._renderLoginState();
         break;
       case 'Signup':
-        render = this.renderLoginState();
+        render = this._renderLoginState();
         break;
     }
     return render;
   }
 
-  renderLoading = () => {
+  _renderLoading = () => {
     if (this.state.loading) {
       return (
         <LoadingOverlay />
@@ -176,20 +176,20 @@ class LoginScreen extends PureComponent {
     }
   }
 
-  renderSelectState = () => {
+  _renderSelectState = () => {
     return (
       <View>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onLoginPress}>Log In</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this._onLoginPress}>Log In</Button>
         </SubContainer>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onSignupPress}>Sign Up</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this._onSignupPress}>Sign Up</Button>
         </SubContainer>
       </View>
     );
   }
 
-  renderLoginState = () => {
+  _renderLoginState = () => {
     return (
       <View>
         <SubContainer>
@@ -198,22 +198,22 @@ class LoginScreen extends PureComponent {
             placeholder='email'
             autoCorrect={false}
             autoCapitalize='none'
-            onChangeText={this.onEmailChange}
+            onChangeText={this._onEmailChange}
           />
         </SubContainer>
         <SubContainer>
           <Input 
               placeholder='password'
               secureTextEntry={true}
-              onChangeText={this.onPasswordChange}
-              onSubmitEditing={this.onButtonPress}
+              onChangeText={this._onPasswordChange}
+              onSubmitEditing={this._onButtonPress}
             />
         </SubContainer>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onButtonPress}>{this.state.loginType}</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this._onButtonPress}>{this.state.loginType}</Button>
         </SubContainer>
         <SubContainer>
-          <Button textColor='#666666' fontSize={15} onPress={this.onCancelPress}>cancel</Button>
+          <Button textColor='#666666' fontSize={15} onPress={this._onCancelPress}>cancel</Button>
         </SubContainer>
       </View>
     );
@@ -224,9 +224,9 @@ class LoginScreen extends PureComponent {
       <SafeAreaView style={styles.containerStyle}>
         <KBAvoidingContainer style={{marginBottom: height / 3}}>
           <Image source={require('../images/nshape-main-logo.png')} style={styles.logoStyle} resizeMode='contain' />
-          {this.chooseRenderType()}
+          {this._chooseRenderType()}
         </KBAvoidingContainer>
-        {this.renderLoading()}
+        {this._renderLoading()}
       </SafeAreaView>
     );
   }

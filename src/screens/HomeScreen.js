@@ -23,23 +23,23 @@ class HomeScreen extends PureComponent {
     this.refs.slider.setNativeProps({ value: this.state.minutes });
   }
 
-  navigateToScreen = (route) => {
+  _navigateToScreen = (route) => {
     const navigateAction = this.props.navigation.navigate({
       routeName: route
     });
     this.props.navigation.dispatch(navigateAction);
   }
 
-  onSliderChanged(value) {
+  _onSliderChanged(value) {
     this.setState({ minutes: value });
   }
 
-  onStartButtonPressed = () => {
+  _onStartButtonPressed = () => {
     console.log('start');
-    this.navigateToScreen('StartWorkout');
+    this._navigateToScreen('StartWorkout');
   }
 
-  onCustomButtonPressed = () => {
+  _onCustomButtonPressed = () => {
     console.log('custom');
     this.navigateToScreen('CustomWorkout');
   }
@@ -66,16 +66,16 @@ class HomeScreen extends PureComponent {
               step={1} 
               thumbTintColor={ThemeColor} 
               minimumTrackTintColor={ThemeColor}
-              onValueChange={(value) => this.onSliderChanged(value)}
+              onValueChange={(value) => this._onSliderChanged(value)}
             />
           </SubContainer>
         </View>
         <View style={styles.subViewStyle}>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onStartButtonPressed}>Start Workout</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this._onStartButtonPressed}>Start Workout</Button>
         </SubContainer>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this.onCustomButtonPressed}>Custom Workout</Button>
+          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this._onCustomButtonPressed}>Custom Workout</Button>
         </SubContainer>
         </View>
       </SafeAreaView>
