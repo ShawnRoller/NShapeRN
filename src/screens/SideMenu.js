@@ -92,13 +92,13 @@ class SideMenu extends Component {
             keyExtractor={ item => item.index.toString() }
           /> */}
         <TouchableOpacity style={styles.buttonStyle} onPress={this._navigateToScreen('Home')}>
-          <Text style={this.getStyle('Home')}>Home</Text>
+          <Text style={this._getStyle('Home')}>Home</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonStyle} onPress={this._navigateToScreen('Profile')}>
-          <Text style={this.getStyle('Profile')}>Profile</Text>
+          <Text style={this._getStyle('Profile')}>Profile</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonStyle} onPress={this._navigateToScreen('Settings')}>
-          <Text style={this.getStyle('Settings')}>Settings</Text>
+          <Text style={this._getStyle('Settings')}>Settings</Text>
         </TouchableOpacity>
         <View style={styles.footerContainerStyle}>
           <TouchableOpacity onPress={this._onLogoutPressed}>

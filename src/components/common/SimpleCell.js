@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const SimpleCell = ({ onPressItem, backgroundColor, textColor, fontSize, alignSelf, textMarginLeft, height, children }) => {
   return (
@@ -7,6 +8,7 @@ const SimpleCell = ({ onPressItem, backgroundColor, textColor, fontSize, alignSe
       <Text style={[styles.textStyle, {color: textColor}, {fontSize}, {alignSelf}, {marginLeft: textMarginLeft}]}>
         {children}
       </Text>
+      <Icon style={styles.disclosureStyle} name="angle-right" size={30} color="#ddd" />
     </TouchableOpacity>
   );
 }
@@ -17,10 +19,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: '#ddd',
     height: 50,
-    justifyContent: 'center'
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   textStyle: {
     fontWeight: '600',
+  },
+  disclosureStyle: {
+    marginRight: 10,
   }
 });
 

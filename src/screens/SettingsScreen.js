@@ -34,8 +34,8 @@ class SettingsScreen extends PureComponent {
         key={item.id}
         onPressItem={this._onItemTap} 
         backgroundColor='#fff' 
-        textColor='#ddd'
-        textMarginLeft={100}
+        textColor='#333'
+        textMarginLeft={50}
         height={50}
         fontSize={30}
       >
