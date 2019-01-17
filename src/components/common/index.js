@@ -6,4 +6,5 @@ export * from './Spinner';
 export * from './LoadingOverlay';
 export * from './KBAvoidingContainer';
 export * from './SimpleCell';
+export * from './TransparentCard';
 
