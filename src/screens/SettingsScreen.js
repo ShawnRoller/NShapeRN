@@ -38,6 +38,7 @@ class SettingsScreen extends PureComponent {
         textMarginLeft={50}
         height={50}
         fontSize={30}
+        hasSwitch={item.toggle}
       >
         {item.title}
       </SimpleCell>

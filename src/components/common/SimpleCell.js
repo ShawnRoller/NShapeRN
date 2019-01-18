@@ -1,14 +1,28 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { Switch, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const SimpleCell = ({ onPressItem, backgroundColor, textColor, fontSize, alignSelf, textMarginLeft, height, children }) => {
+_renderAccessory = (hasSwitch) => {
+  if (hasSwitch) {
+    return (
+      <Switch />
+    );
+  }
+  else {
+    return (
+      <Icon style={styles.disclosureStyle} name="angle-right" size={30} color="#ddd" />
+    );
+  }
+}
+
+const SimpleCell = ({ onPressItem, backgroundColor, textColor, fontSize, alignSelf, textMarginLeft, height, children, hasSwitch }) => {
   return (
     <TouchableOpacity onPress={onPressItem} style={[styles.containerStyle, {backgroundColor}, {height}]}>
       <Text style={[styles.textStyle, {color: textColor}, {fontSize}, {alignSelf}, {marginLeft: textMarginLeft}]}>
         {children}
       </Text>
-      <Icon style={styles.disclosureStyle} name="angle-right" size={30} color="#ddd" />
+      {/* <Icon style={styles.disclosureStyle} name="angle-right" size={30} color="#ddd" /> */}
+      {this._renderAccessory(hasSwitch)}
     </TouchableOpacity>
   );
 }
