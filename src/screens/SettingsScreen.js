@@ -28,10 +28,15 @@ class SettingsScreen extends PureComponent {
     }
   }
 
+  _onSwitchToggled = (item) => {
+    console.log(item);
+  }
+
   _renderItem = ({item}) => {
     return (
       <SimpleCell 
         key={item.id}
+        item={item}
         onPressItem={this._onItemTap} 
         backgroundColor='#fff' 
         textColor='#333'
@@ -39,6 +44,7 @@ class SettingsScreen extends PureComponent {
         height={50}
         fontSize={30}
         hasSwitch={item.toggle}
+        onSwitchToggled={this._onSwitchToggled}
       >
         {item.title}
       </SimpleCell>
