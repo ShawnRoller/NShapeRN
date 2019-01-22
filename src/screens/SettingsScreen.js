@@ -2,13 +2,18 @@ import React, { PureComponent } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { Button, SimpleCell } from '../components/common/';
 
-const CELLS = [
-  {id: '1', title: 'Exercises', screen: 'SetupExercises', toggle: false},
-  {id: '2', title: 'Sounds', screen: null, toggle: true},
-  {id: '3', title: 'Credits', screen: 'Credits', toggle: false},
-]
-
 class SettingsScreen extends PureComponent {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      cells: [
+        {id: '1', title: 'Exercises', screen: 'SetupExercises', hasSwitch: false, toggled: false},
+        {id: '2', title: 'Sounds', screen: null, hasSwitch: true, toggled: false},
+        {id: '3', title: 'Credits', screen: 'Credits', hasSwitch: false, toggled: false},
+      ]
+    }
+  }
 
   _navigateToScreen = (route) => {
     const navigateAction = this.props.navigation.navigate({
@@ -20,16 +25,19 @@ class SettingsScreen extends PureComponent {
   _keyExtractor = (item, index) => item.id;
 
   _onItemTap = (item) => {
-    if (item.screen && !item.toggle) {
+    if (item.screen && !item.hasSwitch) {
       this._navigateToScreen(item.screen);
     }
-    else if (item.toggle) {
+    else if (item.hasSwitch) {
       // Handle toggling the switch
     }
   }
 
-  _onSwitchToggled = (item) => {
-    console.log(item);
+  _onSwitchToggled = (newItem) => {
+    const newCells = Object.assign([], this.state.cells);
+    let foundIndex = newCells.findIndex((item) => item.id === newItem.id);
+    newCells[foundIndex] = newItem;
+    this.setState({ cells: newCells });
   }
 
   _renderItem = ({item}) => {
@@ -43,8 +51,9 @@ class SettingsScreen extends PureComponent {
         textMarginLeft={50}
         height={50}
         fontSize={30}
-        hasSwitch={item.toggle}
+        hasSwitch={item.hasSwitch}
         onSwitchToggled={this._onSwitchToggled}
+        switchToggled={item.toggled}
       >
         {item.title}
       </SimpleCell>
@@ -57,7 +66,7 @@ class SettingsScreen extends PureComponent {
         <Text>This is the settings screen This is the settings screen This is the settings screen This is the settings screen</Text>
         <Button backgroundColor='#000' textColor='#fff' shadow fontSize={20}>This is a screen</Button>
         <FlatList
-          data={CELLS}
+          data={this.state.cells}
           renderItem={this._renderItem}
           keyExtractor={this._keyExtractor}
         />
