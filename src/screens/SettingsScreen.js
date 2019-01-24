@@ -22,9 +22,10 @@ class SettingsScreen extends PureComponent {
     this.props.navigation.dispatch(navigateAction);
   }
 
-  _keyExtractor = (item, index) => item.id;
+  _keyExtractor = (item) => item.id;
 
   _onItemTap = (item) => {
+    console.log(item);
     if (item.screen && !item.hasSwitch) {
       this._navigateToScreen(item.screen);
     }

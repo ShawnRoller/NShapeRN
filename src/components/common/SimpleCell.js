@@ -33,7 +33,7 @@ class SimpleCell extends PureComponent {
     const { onPressItem, backgroundColor, height, textColor, fontSize, alignSelf, textMarginLeft, children, item } = this.props;
 
     return (
-      <TouchableOpacity onPress={onPressItem} style={[styles.containerStyle, {backgroundColor}, {height}]}>
+      <TouchableOpacity activeOpacity={item.hasSwitch ? 1 : 0.2} onPress={() => onPressItem(item)} style={[styles.containerStyle, {backgroundColor}, {height}]}>
         <Text style={[styles.textStyle, {color: textColor}, {fontSize}, {alignSelf}, {marginLeft: textMarginLeft}]}>
           {children}
         </Text>
