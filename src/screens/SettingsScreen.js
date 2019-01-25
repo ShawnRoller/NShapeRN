@@ -64,8 +64,6 @@ class SettingsScreen extends PureComponent {
   render() {
     return (
       <View style={{flex:1}}>
-        <Text>This is the settings screen This is the settings screen This is the settings screen This is the settings screen</Text>
-        <Button backgroundColor='#000' textColor='#fff' shadow fontSize={20}>This is a screen</Button>
         <FlatList
           data={this.state.cells}
           renderItem={this._renderItem}
