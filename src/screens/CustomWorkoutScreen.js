@@ -3,6 +3,10 @@ import { View, Text } from 'react-native';
 
 class CustomWorkoutScreen extends PureComponent {
 
+  static navigationOptions = {
+    title: 'Custom Workout',
+  }
+
   render() {
     return (
       <View><Text>HalloHalloHalloHalloHalloHallo</Text></View>

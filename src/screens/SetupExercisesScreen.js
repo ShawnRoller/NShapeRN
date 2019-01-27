@@ -12,6 +12,10 @@ const DATA = [
 
 class SetupExercises extends PureComponent {
 
+  static navigationOptions = {
+    title: 'Exercises',
+  }
+
   constructor(props) {
     super(props);
     this.state = {

@@ -4,6 +4,10 @@ import { Button, SimpleCell } from '../components/common/';
 
 class SettingsScreen extends PureComponent {
 
+  static navigationOptions = {
+    title: 'Settings',
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -63,7 +67,7 @@ class SettingsScreen extends PureComponent {
 
   render() {
     return (
-      <View style={{flex:1}}>
+      <View style={styles.containerViewStyle}>
         <FlatList
           data={this.state.cells}
           renderItem={this._renderItem}
