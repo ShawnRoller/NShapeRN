@@ -1,17 +1,15 @@
 import React from 'react';
-import { FlatList, View, Text } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { SimpleCell } from '../components/common/';
 
 const credits = [
-  { id: '1', title: 'Title1', subtitle: 'Subtitle1' },
-  { id: '2', title: 'Title2', subtitle: 'Subtitle2' },
-  { id: '3', title: 'Title3', subtitle: 'Subtitle3' },
-  { id: '4', title: 'Title4', subtitle: 'Subtitle4' },
+  { id: '1', title: 'Shane Rocker', subtitle: 'Development' },
+  { id: '2', title: 'Lindsey Roller', subtitle: 'Inspiration' },
+  { id: '3', title: 'Jason Worrix', subtitle: 'Design' },
+  { id: '4', title: 'Brony Fox', subtitle: 'QA' },
 ]
 
 class CreditsScreen extends React.PureComponent {
-
-  
 
   static navigationOptions = {
     title: 'Credits',
@@ -23,7 +21,7 @@ class CreditsScreen extends React.PureComponent {
     return (
       <SimpleCell 
         key={item.id}
-        item={hasSwitch=false}
+        item={{...item, hasSwitch: false}}
         backgroundColor='#fff' 
         textColor='#333'
         textMarginLeft={50}

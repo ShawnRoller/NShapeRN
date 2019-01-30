@@ -11,13 +11,13 @@ class SimpleCell extends PureComponent {
     };
   }
 
-  _renderAccessory = (item) => {
+  _renderAccessory = (item, hasScreen) => {
     if (item.hasSwitch) {
       return (
         <Switch value={item.toggled} onValueChange={(switched) => this._onSwitchToggled(item, switched)}/>
       );
     }
-    else {
+    else if (hasScreen) {
       return (
         <Icon style={styles.disclosureStyle} name="angle-right" size={30} color="#ddd" />
       );
@@ -37,7 +37,10 @@ class SimpleCell extends PureComponent {
         <Text style={[styles.textStyle, {color: textColor}, {fontSize}, {alignSelf}, {marginLeft: textMarginLeft}]}>
           {children}
         </Text>
-        {this._renderAccessory(item)}
+        <Text style={styles.subtitleStyle}>
+          {item.subtitle}
+        </Text>
+        {this._renderAccessory(item, item.screen)}
       </TouchableOpacity>
     );
   }
@@ -55,7 +58,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   textStyle: {
-    fontWeight: '600',
+    flex: 2,
+    fontWeight: '400',
+  },
+  subtitleStyle: {
+    flex: 1,
+    fontWeight: '300',
   },
   disclosureStyle: {
     marginRight: 10,
