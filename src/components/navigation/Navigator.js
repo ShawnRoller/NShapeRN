@@ -10,10 +10,11 @@ import StartWorkoutScreen from '../../screens/StartWorkoutScreen';
 import CustomWorkoutScreen from '../../screens/CustomWorkoutScreen';
 import SetupExercisesScreen from '../../screens/SetupExercisesScreen';
 import CreditsScreen from '../../screens/CreditsScreen';
+import WorkoutPreviewScreen from '../../screens/WorkoutPreviewScreen';
 
 const TESTING = true;
 const TEST_ROUTE = 'DrawerNavigation';
-const TEST_SCREEN = 'Settings';
+const TEST_SCREEN = 'Home';
 
 openDrawer = (navigation) => {
   navigation.toggleDrawer();
@@ -36,6 +37,7 @@ const MainStack = createStackNavigator({
   CustomWorkout: CustomWorkoutScreen,
   SetupExercises: SetupExercisesScreen,
   Credits: CreditsScreen,
+  WorkoutPreview: WorkoutPreviewScreen
 },
 {
   headerMode: 'none'

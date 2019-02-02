@@ -4,13 +4,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 class SimpleCell extends PureComponent {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      switchToggled: props.switchToggled
-    };
-  }
-
   _renderAccessory = (item, hasScreen) => {
     if (item.hasSwitch) {
       return (

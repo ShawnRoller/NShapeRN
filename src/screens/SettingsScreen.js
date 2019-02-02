@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import { View, Text, FlatList } from 'react-native';
-import { Button, SimpleCell } from '../components/common/';
+import { View, FlatList } from 'react-native';
+import { SimpleCell } from '../components/common/';
 
 class SettingsScreen extends PureComponent {
 

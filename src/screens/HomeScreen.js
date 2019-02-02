@@ -41,7 +41,7 @@ class HomeScreen extends PureComponent {
 
   _onCustomButtonPressed = () => {
     console.log('custom');
-    this.navigateToScreen('CustomWorkout');
+    this._navigateToScreen('CustomWorkout');
   }
 
   render() {
