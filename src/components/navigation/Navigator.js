@@ -77,7 +77,8 @@ const LoginStack = createStackNavigator({
 
 const Navigator = createStackNavigator({
   LoginStack: { screen : LoginStack },
-  DrawerNavigation: { screen: DrawerNavigation }
+  DrawerNavigation: { screen: DrawerNavigation },
+  MainStack: { screen: MainStack },
 }, {
   headerMode: 'none',
   initialRouteName: TESTING ? TEST_ROUTE : 'LoginStack'

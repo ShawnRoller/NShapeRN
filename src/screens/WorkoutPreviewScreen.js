@@ -22,7 +22,10 @@ class WorkoutPreviewScreen extends React.PureComponent {
   _keyExtractor = (item) => item.id;
 
   _onSwitchToggled = (newItem) => {
-
+    const newCells = Object.assign([], this.state.cells);
+    let foundIndex = newCells.findIndex((item) => item.id === newItem.id);
+    newCells[foundIndex] = newItem;
+    this.setState({ cells: newCells });
   }
 
   _renderItem = ({item}) => {
