@@ -18,7 +18,7 @@ class SimpleTableView extends React.PureComponent {
         item={item}
         backgroundColor='#fff' 
         textColor='#333'
-        textMarginLeft={titleMarginLeft}
+        textMarginLeft={textMarginLeft}
         height={height}
         fontSize={fontSize}
         hasSwitch={item.hasSwitch}

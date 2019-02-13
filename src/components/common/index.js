@@ -7,3 +7,4 @@ export * from './LoadingOverlay';
 export * from './KBAvoidingContainer';
 export * from './SimpleCell';
 export * from './TransparentCard';
+export * from './SimpleTableView';
