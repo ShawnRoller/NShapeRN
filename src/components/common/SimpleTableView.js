@@ -7,15 +7,20 @@ class SimpleTableView extends React.PureComponent {
   _keyExtractor = (item) => item.id;
 
   _renderItem = ({item}) => {
+
+    const textMarginLeft = this.props.titleMarginLeft ? this.props.titleMarginLeft : 50;
+    const height = this.props.cellHeight ? this.props.cellHeight : 50;
+    const fontSize = this.props.fontSize ? this.props.fontSize : 30;
+
     return (
       <SimpleCell 
         key={item.id}
         item={item}
         backgroundColor='#fff' 
         textColor='#333'
-        textMarginLeft={50}
-        height={50}
-        fontSize={30}
+        textMarginLeft={titleMarginLeft}
+        height={height}
+        fontSize={fontSize}
         hasSwitch={item.hasSwitch}
         onSwitchToggled={this.props.onSwitchToggled}
         switchToggled={item.toggled}
