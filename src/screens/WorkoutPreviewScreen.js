@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, FlatList } from 'react-native';
-import { SimpleCell } from '../components/common/';
+import { View } from 'react-native';
+import { SimpleTableView } from '../components/common/';
 
 class WorkoutPreviewScreen extends React.PureComponent {
 
@@ -19,42 +19,10 @@ class WorkoutPreviewScreen extends React.PureComponent {
     }
   }
 
-  _keyExtractor = (item) => item.id;
-
-  _onSwitchToggled = (newItem) => {
-    const newCells = Object.assign([], this.state.cells);
-    let foundIndex = newCells.findIndex((item) => item.id === newItem.id);
-    newCells[foundIndex] = newItem;
-    this.setState({ cells: newCells });
-  }
-
-  _renderItem = ({item}) => {
-    return (
-      <SimpleCell 
-        key={item.id}
-        item={item}
-        backgroundColor='#fff' 
-        textColor='#333'
-        textMarginLeft={50}
-        height={50}
-        fontSize={30}
-        hasSwitch={item.hasSwitch}
-        onSwitchToggled={this._onSwitchToggled}
-        switchToggled={item.toggled}
-      >
-        {item.title}
-      </SimpleCell>
-    );
-  }
-
   render() {
     return (
       <View style={styles.containerStyle}>
-        <FlatList
-          data={this.state.cells}
-          renderItem={this._renderItem}
-          keyExtractor={this._keyExtractor}
-        />
+        <SimpleTableView data={this.state.cells} />
       </View>
     );
   }
