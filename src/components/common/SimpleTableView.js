@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { SimpleCell } from './SimpleCell';
 
 class SimpleTableView extends React.PureComponent {
@@ -22,7 +22,7 @@ class SimpleTableView extends React.PureComponent {
         height={height}
         fontSize={fontSize}
         hasSwitch={item.hasSwitch}
-        onSwitchToggled={this.props.onSwitchToggled}
+        onSwitchToggled={() => this.props.onSwitchToggled(item)}
         switchToggled={item.toggled}
       >
         {item.title}
@@ -42,6 +42,12 @@ class SimpleTableView extends React.PureComponent {
     );
   }
 
+}
+
+const styles = {
+  containerStyle: {
+    flex: 1
+  }
 }
 
 export { SimpleTableView };

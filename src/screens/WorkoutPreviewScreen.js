@@ -19,10 +19,21 @@ class WorkoutPreviewScreen extends React.PureComponent {
     }
   }
 
+  _onSwitchToggled = (item) => {
+    const cells = Object.assign([], this.state.cells);
+    const cellIndex = cells.findIndex((cell) => {
+      return item.id === cell.id;
+    });
+    const cell = cells[cellIndex];
+    cell.toggled = !cell.toggled;
+    cells[cellIndex] = cell;
+    this.setState({ cells });
+  }
+
   render() {
     return (
       <View style={styles.containerStyle}>
-        <SimpleTableView data={this.state.cells} />
+        <SimpleTableView data={this.state.cells} onSwitchToggled={this._onSwitchToggled} />
       </View>
     );
   }

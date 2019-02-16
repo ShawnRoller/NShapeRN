@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Image } from 'react-native';
-import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import { createAppContainer, createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import LoginScreen from '../../screens/LoginScreen';
 import HomeScreen from '../../screens/HomeScreen';
 import SettingsScreen from '../../screens/SettingsScreen';
@@ -75,7 +75,7 @@ const LoginStack = createStackNavigator({
   headerMode: 'float'
 });
 
-const Navigator = createStackNavigator({
+const AppNavigator = createStackNavigator({
   LoginStack: { screen : LoginStack },
   DrawerNavigation: { screen: DrawerNavigation },
   MainStack: { screen: MainStack },
@@ -83,6 +83,8 @@ const Navigator = createStackNavigator({
   headerMode: 'none',
   initialRouteName: TESTING ? TEST_ROUTE : 'LoginStack'
 });
+
+const Navigator = createAppContainer(AppNavigator);
 
 const styles = {
   menuButtonStyle: {
