@@ -24,6 +24,7 @@ class SimpleTableView extends React.PureComponent {
         hasSwitch={item.hasSwitch}
         onSwitchToggled={() => this.props.onSwitchToggled(item)}
         switchToggled={item.toggled}
+        onPressItem={() => this.props.onPressItem(item)}
       >
         {item.title}
       </SimpleCell>

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import { View, FlatList } from 'react-native';
-import { SimpleCell } from '../components/common/';
+import { View } from 'react-native';
+import { SimpleTableView } from '../components/common/';
 
 class CustomWorkoutScreen extends PureComponent {
 
@@ -32,34 +32,10 @@ class CustomWorkoutScreen extends PureComponent {
     }
   }
 
-  _keyExtractor = (item) => item.id;
-
-  _renderItem = ({item}) => {
-    return (
-      <SimpleCell
-        key={item.id}
-        item={item}
-        onPressItem={this._onItemTap}
-        backgroundColor='#fff'
-        textColor='#333'
-        textMarginLeft={30}
-        height={50}
-        fontSize={30}
-        hasSwitch={item.hasSwitch}
-      >
-        {item.title}
-      </SimpleCell>
-    );
-  }
-
   render() {
     return (
       <View style={styles.containerStyle}>
-        <FlatList
-          keyExtractor={this._keyExtractor}
-          data={this.state.cells}
-          renderItem={this._renderItem}
-        />
+        <SimpleTableView data={this.state.cells} onPressItem={this._onItemTap} />
       </View>
     );
   }
