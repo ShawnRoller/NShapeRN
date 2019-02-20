@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, View } from 'react-native';
-import { SimpleCell } from '../components/common/';
+import { SimpleTableView } from '../components/common/';
 
 const credits = [
   { id: '1', title: 'Shane Rocker', subtitle: 'Development' },
@@ -36,11 +36,7 @@ class CreditsScreen extends React.PureComponent {
   render() {
     return (
       <View style={styles.containerStyle}>
-        <FlatList
-          keyExtractor={this._keyExtractor}
-          renderItem={this._renderItem}
-          data={credits}
-        />
+        <SimpleTableView data={credits} onPressItem={() => {}} />
       </View>
     );
   }
