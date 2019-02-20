@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import { View, FlatList } from 'react-native';
-import { SimpleCell } from '../components/common/';
+import { View } from 'react-native';
+import { SimpleTableView } from '../components/common/';
 
 class SettingsScreen extends PureComponent {
 
@@ -26,8 +26,6 @@ class SettingsScreen extends PureComponent {
     this.props.navigation.dispatch(navigateAction);
   }
 
-  _keyExtractor = (item) => item.id;
-
   _onItemTap = (item) => {
     console.log(item);
     if (item.screen && !item.hasSwitch) {
@@ -41,38 +39,15 @@ class SettingsScreen extends PureComponent {
   _onSwitchToggled = (newItem) => {
     const newCells = Object.assign([], this.state.cells);
     let foundIndex = newCells.findIndex((item) => item.id === newItem.id);
+    newItem.toggled = !newItem.toggled;
     newCells[foundIndex] = newItem;
     this.setState({ cells: newCells });
-  }
-
-  _renderItem = ({item}) => {
-    return (
-      <SimpleCell 
-        key={item.id}
-        item={item}
-        onPressItem={this._onItemTap} 
-        backgroundColor='#fff' 
-        textColor='#333'
-        textMarginLeft={50}
-        height={50}
-        fontSize={30}
-        hasSwitch={item.hasSwitch}
-        onSwitchToggled={this._onSwitchToggled}
-        switchToggled={item.toggled}
-      >
-        {item.title}
-      </SimpleCell>
-    );
   }
 
   render() {
     return (
       <View style={styles.containerViewStyle}>
-        <FlatList
-          data={this.state.cells}
-          renderItem={this._renderItem}
-          keyExtractor={this._keyExtractor}
-        />
+        <SimpleTableView data={this.state.cells} onSwitchToggled={this._onSwitchToggled} onPressItem={this._onItemTap} />
       </View>
     );
   }
