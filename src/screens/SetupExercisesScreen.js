@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import { FlatList, View, Text } from 'react-native';
-import { SimpleCell } from '../components/common/';
+import { View } from 'react-native';
+import { SimpleTableView } from '../components/common/';
 
 const DATA = [
   {id: '1', title: 'Bench Press', screen: 'Edit Exercise', hasSwitch: true, toggled: true},
@@ -36,34 +36,10 @@ class SetupExercises extends PureComponent {
     this.setState({ cells: newCells });
   }
 
-  _renderItem = ({item}) => {
-    return (
-      <SimpleCell 
-        key={item.id}
-        item={item}
-        onPressItem={this._onItemTap} 
-        backgroundColor='#fff' 
-        textColor='#333'
-        textMarginLeft={30}
-        height={40}
-        fontSize={20}
-        hasSwitch={item.hasSwitch}
-        onSwitchToggled={this._onSwitchToggled}
-        switchToggled={item.toggled}
-      >
-        {item.title}
-      </SimpleCell>
-    );
-  }
-
   render() {
     return (
       <View>
-        <FlatList
-          data={this.state.cells}
-          renderItem={this._renderItem}
-          keyExtractor={this._keyExtractor}
-        />
+        <SimpleTableView data={this.state.cells} onSwitchToggled={this._onSwitchToggled} onPressItem={this._onItemTap} />
       </View>
     );
   }
