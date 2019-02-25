@@ -11,6 +11,7 @@ import CustomWorkoutScreen from '../../screens/CustomWorkoutScreen';
 import SetupExercisesScreen from '../../screens/SetupExercisesScreen';
 import CreditsScreen from '../../screens/CreditsScreen';
 import WorkoutPreviewScreen from '../../screens/WorkoutPreviewScreen';
+import ActiveWorkoutScreen from '../../screens/ActiveWorkoutScreen';
 
 const TESTING = true;
 const TEST_ROUTE = 'DrawerNavigation';
@@ -37,7 +38,8 @@ const MainStack = createStackNavigator({
   CustomWorkout: CustomWorkoutScreen,
   SetupExercises: SetupExercisesScreen,
   Credits: CreditsScreen,
-  WorkoutPreview: WorkoutPreviewScreen
+  WorkoutPreview: WorkoutPreviewScreen,
+  ActiveWorkout: ActiveWorkoutScreen
 },
 {
   headerMode: 'none'
