@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, FlatList, Alert } from 'react-native';
+import { SafeAreaView, View, Text, TouchableOpacity, FlatList, Alert } from 'react-native';
 // import { DrawerItems } from 'react-navigation';
 import { ThemeColor } from '../components/Theme';
 import FirebaseAPI from '../components/api/FirebaseAPI';
@@ -17,16 +17,17 @@ class SideMenu extends Component {
     }
 
     this.state = {
-      items
+      items,
+      activeItemKey: 0
     }
   }
 
   componentWillUpdate() {
-    console.log(this.props.activeItemKey);
     this.render();
   }
 
   _navigateToScreen = (route) => () => {
+    this.setState({ activeItemKey: this.props.activeItemKey })
     const navigateAction = this.props.navigation.navigate({
       routeName: route
     });
@@ -66,9 +67,8 @@ class SideMenu extends Component {
 
   _renderItem = (item) => {
     const textStyle = item.child === this.props.activeItemKey ? styles.focusedTextStyle : styles.textStyle;
-    console.log(item.child + this.props.activeItemKey);
     return (
-      <TouchableOpacity style={styles.buttonStyle} onPress={this._navigateToScreen(item.child)}>
+      <TouchableOpacity style={styles.buttonStyle} onPress={ this._navigateToScreen(item.child) }>
         <Text style={textStyle}>{item.child}</Text>
       </TouchableOpacity>
     );
@@ -82,16 +82,16 @@ class SideMenu extends Component {
 
   render() {
     return (
-      <View style={styles.containerStyle}>
-          {/* <FlatList
+      <SafeAreaView style={styles.containerStyle}>
+          <FlatList
             data={this.state.items}
             extraData={this.state}
             renderItem={( item ) => (
-              this.renderItem(item.item)
+              this._renderItem(item.item)
             )}
             keyExtractor={ item => item.index.toString() }
-          /> */}
-        <TouchableOpacity style={styles.buttonStyle} onPress={this._navigateToScreen('Home')}>
+          />
+        {/* <TouchableOpacity style={styles.buttonStyle} onPress={this._navigateToScreen('Home')}>
           <Text style={this._getStyle('Home')}>Home</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonStyle} onPress={this._navigateToScreen('Profile')}>
@@ -99,14 +99,14 @@ class SideMenu extends Component {
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonStyle} onPress={this._navigateToScreen('Settings')}>
           <Text style={this._getStyle('Settings')}>Settings</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View style={styles.footerContainerStyle}>
           <TouchableOpacity onPress={this._onLogoutPressed}>
             <Text style={styles.logoutTextStyle}>Logout</Text>
           </TouchableOpacity>
           <Text style={styles.versionTextStyle}>v0.1.0</Text>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }
