@@ -8,20 +8,28 @@ class ActiveWorkoutScreen extends React.PureComponent {
 
   render() {
     return (
-      <View>
+      <View style={styles.containerStyle}>
         <Text>
           This is the active workout screen
         </Text>
         <AnimatedCircularProgress
-          size={120}
-          width={15}
+          size={200}
+          width={4}
           fill={100}
-          tintColor="#00e0ff"
+          tintColor='red'
           onAnimationComplete={() => console.log('onAnimationComplete')}
-          backgroundColor="#3d5875" 
+          backgroundColor='#fff'
         />
       </View>
     )
+  }
+}
+
+const styles = {
+  containerStyle: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 }
 
