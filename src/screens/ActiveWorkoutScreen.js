@@ -6,11 +6,11 @@ import { Button } from '../components/common/Button';
 import ThemeColor from '../components/Theme';
 
 const DATA = [
-  { name: 'Push up', duration: 30, order: 1, completed: false },
-  { name: 'Pull up', duration: 25, order: 2, completed: false },
-  { name: 'Sit up', duration: 20, order: 5, completed: false },
-  { name: 'Chin up', duration: 15, order: 4, completed: false },
-  { name: 'Squat', duration: 10, order: 3, completed: false },
+  { name: 'Push up', duration: 10, order: 1, completed: false },
+  { name: 'Pull up', duration: 9, order: 2, completed: false },
+  { name: 'Sit up', duration: 8, order: 5, completed: false },
+  { name: 'Chin up', duration: 7, order: 4, completed: false },
+  { name: 'Squat', duration: 6, order: 3, completed: false },
 ]
 
 class ActiveWorkoutScreen extends React.PureComponent {
@@ -19,7 +19,8 @@ class ActiveWorkoutScreen extends React.PureComponent {
     super(props);
     this.state = {
       exercises: DATA,
-      currentExerciseIndex: 0
+      currentExerciseIndex: 0,
+      isTimerRunning: false
     }
   }
 
@@ -42,10 +43,10 @@ class ActiveWorkoutScreen extends React.PureComponent {
       console.log('fail');
       return;
     }
-
+    
     let exerciseIndex = 0;
     let exercise = exercises[exerciseIndex];
-    if (exercises.count > index) {
+    if (exercises.length > index) {
       exerciseIndex = index;
       exercise = exercises[exerciseIndex];
     }
@@ -54,18 +55,27 @@ class ActiveWorkoutScreen extends React.PureComponent {
 
   _onButtonPress = () => {
     let {exercise, exerciseIndex} = this._getExercise(this.state.exercises, this.state.currentExerciseIndex);
-    this._startExercise(exercise);
+    this.setState({ isTimerRunning: true}, () => {
+        this._startExercise(exercise);
+    });
   }
 
   _startExercise = (exercise) => {
-    this.circularProgress.animate(1, exercise.duration * 1000, Easing.quad);
+    this.circularProgress.reAnimate(100, 1, exercise.duration * 1000, Easing.quad);
   }
 
   _onExerciseEnd = () => {
-    let {exercise, exerciseIndex} = this._getExercise(this.state.exercises, this.state.currentExerciseIndex);
+    let {exercise, exerciseIndex} = this._getExercise(this.state.exercises, this.state.currentExerciseIndex + 1);
+    console.log(exerciseIndex, exercise);
     this.setState({ currentExerciseIndex: exerciseIndex }, () => {
       this._startExercise(exercise);
     });
+  }
+
+  _onAnimationEnd = () => {
+    if (this.state.isTimerRunning) {
+      this._onExerciseEnd();
+    }
   }
 
   _renderProgress = () => {
@@ -77,7 +87,7 @@ class ActiveWorkoutScreen extends React.PureComponent {
           width={4}
           fill={100}
           tintColor='red'
-          onAnimationComplete={() => console.log('onAnimationComplete')}
+          onAnimationComplete={this._onAnimationEnd}
         />
     )
   }
