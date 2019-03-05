@@ -61,7 +61,8 @@ class ActiveWorkoutScreen extends React.PureComponent {
   }
 
   _startExercise = (exercise) => {
-    this.circularProgress.reAnimate(100, 1, exercise.duration * 1000, Easing.quad);
+    // this.circularProgress.reAnimate(100, 1, exercise.duration * 1000, Easing.quad);
+    this.circularProgress.reAnimate(100, 1, exercise.duration * 1000, Easing.linear);
   }
 
   _onExerciseEnd = () => {
@@ -79,16 +80,24 @@ class ActiveWorkoutScreen extends React.PureComponent {
   }
 
   _renderProgress = () => {
+    let { exercise, exerciseIndex } = this._getExercise(this.state.exercises, this.state.currentExerciseIndex);
+
     return (
       <AnimatedCircularProgress
-          ref={(ref) => this.circularProgress = ref}
-          rotation={-360}
-          size={200}
-          width={4}
-          fill={100}
-          tintColor='red'
-          onAnimationComplete={this._onAnimationEnd}
-        />
+        ref={(ref) => this.circularProgress = ref}
+        rotation={-360}
+        size={200}
+        width={4}
+        fill={100}
+        tintColor='red'
+        onAnimationComplete={this._onAnimationEnd}
+      >
+      {(fill) => (
+        <Text>
+          { Math.round(exercise.duration * (fill / 100)) }
+        </Text>
+      )}
+      </AnimatedCircularProgress>
     )
   }
 
