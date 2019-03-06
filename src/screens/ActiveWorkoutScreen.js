@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, Easing } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { Button } from '../components/common/Button';
-import ThemeColor from '../components/Theme';
+import * as Colors from '../components/Theme';
 
 const DATA = [
   { name: 'Push up', duration: 10, order: 1, completed: false },
@@ -20,7 +20,8 @@ class ActiveWorkoutScreen extends React.PureComponent {
     this.state = {
       exercises: DATA,
       currentExerciseIndex: 0,
-      isTimerRunning: false
+      isTimerRunning: false,
+      timerFill: 100,
     }
   }
 
@@ -53,15 +54,22 @@ class ActiveWorkoutScreen extends React.PureComponent {
     return {exercise, exerciseIndex};
   }
 
-  _onButtonPress = () => {
-    let {exercise, exerciseIndex} = this._getExercise(this.state.exercises, this.state.currentExerciseIndex);
-    this.setState({ isTimerRunning: true}, () => {
-        this._startExercise(exercise);
-    });
+  _onPlayButtonPress = () => {
+    if (this.state.isTimerRunning) {
+      this._pauseExercise();
+    } else {
+      let {exercise, exerciseIndex} = this._getExercise(this.state.exercises, this.state.currentExerciseIndex);
+      this.setState({ isTimerRunning: true}, () => {
+          this._startExercise(exercise);
+      });
+    }
+  }
+
+  _pauseExercise = () => {
+    // this.circularProgress.animate(this.state.timerFill, this.state.timerFill, 0, Easing.bounce);
   }
 
   _startExercise = (exercise) => {
-    // this.circularProgress.reAnimate(100, 1, exercise.duration * 1000, Easing.quad);
     this.circularProgress.reAnimate(100, 1, exercise.duration * 1000, Easing.linear);
   }
 
@@ -79,22 +87,26 @@ class ActiveWorkoutScreen extends React.PureComponent {
     }
   }
 
+  _getTimerString = (duration, fillPercent) => {
+    return Math.round(duration * (fillPercent / 100));
+  }
+
   _renderProgress = () => {
     let { exercise, exerciseIndex } = this._getExercise(this.state.exercises, this.state.currentExerciseIndex);
 
     return (
       <AnimatedCircularProgress
         ref={(ref) => this.circularProgress = ref}
+        fill={this.state.timerFill}
         rotation={-360}
         size={200}
         width={4}
-        fill={100}
         tintColor='red'
         onAnimationComplete={this._onAnimationEnd}
       >
       {(fill) => (
-        <Text>
-          { Math.round(exercise.duration * (fill / 100)) }
+        <Text style={[styles.timerTextStyle, {color:Colors.DarkGray}]}>
+          { this._getTimerString(exercise.duration, this.state.timerFill) }
         </Text>
       )}
       </AnimatedCircularProgress>
@@ -107,7 +119,7 @@ class ActiveWorkoutScreen extends React.PureComponent {
         <Text>
           This is the active workout screen
         </Text>
-        <Button onPress={this._onButtonPress}>start timer</Button>
+        <Button onPress={this._onPlayButtonPress}>start timer</Button>
         {this._renderProgress()}
       </View>
     )
@@ -119,6 +131,9 @@ const styles = {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  timerTextStyle: {
+    fontSize: 49,
   }
 }
 
