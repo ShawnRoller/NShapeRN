@@ -116,11 +116,14 @@ class ActiveWorkoutScreen extends React.PureComponent {
   render() {
     return (
       <View style={styles.containerStyle}>
-        <Text>
-          This is the active workout screen
-        </Text>
-        <Button onPress={this._onPlayButtonPress}>start timer</Button>
-        {this._renderProgress()}
+        <View style={styles.exercisesContainerStyle}>
+          <Button onPress={this._onPlayButtonPress}>start timer</Button>
+        </View>
+        <View style={styles.clockContainerStyle}>
+          {this._renderProgress()}
+        </View>
+        <View style={styles.controlsContainerStyle}>
+        </View>
       </View>
     )
   }
@@ -131,6 +134,15 @@ const styles = {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  clockContainerStyle: {
+    flex: 1,
+  },
+  exercisesContainerStyle: {
+    flex: 1,
+  },
+  controlsContainerStyle: {
+    flex: 1
   },
   timerTextStyle: {
     fontSize: 49,
