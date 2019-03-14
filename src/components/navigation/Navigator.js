@@ -39,10 +39,19 @@ const MainStack = createStackNavigator({
   SetupExercises: SetupExercisesScreen,
   Credits: CreditsScreen,
   WorkoutPreview: WorkoutPreviewScreen,
-  ActiveWorkout: ActiveWorkoutScreen
+  ActiveWorkout: {
+    screen: ActiveWorkoutScreen,
+    navigationOptions: ({ navigation }) => ({
+      headerMode: 'none',
+      title: 'test',
+    })
+  }
 },
 {
-  headerMode: 'none'
+  headerMode: 'none',
+  navigationOptions: {
+    headerVisible: false
+  }
 })
 
 const DrawerStack = createDrawerNavigator({
