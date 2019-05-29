@@ -4,6 +4,8 @@ import { View, Text, Easing } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { Button } from '../components/common/Button';
 import * as Colors from '../components/Theme';
+import Workout from '../models/Workout';
+import Exercise from '../models/Exercise';
 
 const DATA = [
   { name: 'Push up', duration: 10, order: 1, completed: false },
@@ -17,8 +19,20 @@ class ActiveWorkoutScreen extends React.PureComponent {
 
   constructor(props) {
     super(props);
+
+    const newExercise = new Exercise('Push up', 10, 1);
+
+    const exercises = [newExercise];
+    const duration = exercises.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue;
+    });
+
+    const newWorkout = new Workout('Test1', exercises, duration);
+
+    debugger
+
     this.state = {
-      exercises: DATA,
+      exercises: newWorkout.exercises,
       currentExerciseIndex: 0,
       isTimerRunning: false,
       timerFill: 100,

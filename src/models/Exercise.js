@@ -1,8 +1,12 @@
 import React from 'react';
 
-const Exercise = {
-  title: '',
-  duration: 0
+class Exercise {
+  constructor(name, duration, order) {
+    this.name = name;
+    this.duration = duration;
+    this.order = order;
+    this.completed = false;
+  }
 }
 
 export default Exercise;
