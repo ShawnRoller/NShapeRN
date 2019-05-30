@@ -7,29 +7,23 @@ import * as Colors from '../components/Theme';
 import Workout from '../models/Workout';
 import Exercise from '../models/Exercise';
 
-const DATA = [
-  { name: 'Push up', duration: 10, order: 1, completed: false },
-  { name: 'Pull up', duration: 9, order: 2, completed: false },
-  { name: 'Sit up', duration: 8, order: 5, completed: false },
-  { name: 'Chin up', duration: 7, order: 4, completed: false },
-  { name: 'Squat', duration: 6, order: 3, completed: false },
-]
-
 class ActiveWorkoutScreen extends React.PureComponent {
 
   constructor(props) {
     super(props);
 
-    const newExercise = new Exercise('Push up', 10, 1);
+    const newExercise1 = new Exercise('Push up', 10, 1);
+    const newExercise2 = new Exercise('Pull up', 11, 5);
+    const newExercise3 = new Exercise('Squat', 12, 4);
+    const newExercise4 = new Exercise('Deadlift', 13, 3);
+    const newExercise5 = new Exercise('Bench Press', 14, 2);
 
-    const exercises = [newExercise];
+    const exercises = [newExercise1, newExercise2, newExercise3, newExercise4, newExercise5];
     const duration = exercises.reduce((accumulator, currentValue) => {
       return accumulator + currentValue;
     });
 
     const newWorkout = new Workout('Test1', exercises, duration);
-
-    debugger
 
     this.state = {
       exercises: newWorkout.exercises,
@@ -102,7 +96,7 @@ class ActiveWorkoutScreen extends React.PureComponent {
   }
 
   _getTimerString = (duration, fillPercent) => {
-    return Math.round(duration * (fillPercent / 100));
+    return Math.round((duration * fillPercent) / 100);
   }
 
   _renderProgress = () => {
@@ -120,7 +114,7 @@ class ActiveWorkoutScreen extends React.PureComponent {
       >
       {(fill) => (
         <Text style={[styles.timerTextStyle, {color:Colors.DarkGray}]}>
-          { this._getTimerString(exercise.duration, this.state.timerFill) }
+          { exercise.name + this._getTimerString(exercise.duration, fill) }
         </Text>
       )}
       </AnimatedCircularProgress>
