@@ -74,7 +74,7 @@ class ActiveWorkoutScreen extends React.PureComponent {
   }
 
   _pauseExercise = () => {
-    // this.circularProgress.animate(this.state.timerFill, this.state.timerFill, 0, Easing.bounce);
+    this.circularProgress.reAnimate(this.state.timerFill, this.state.timerFill, 0, Easing.bounce);
   }
 
   _startExercise = (exercise) => {
@@ -96,7 +96,21 @@ class ActiveWorkoutScreen extends React.PureComponent {
   }
 
   _getTimerString = (duration, fillPercent) => {
-    return Math.round((duration * fillPercent) / 100);
+    const timeRemaining = Math.round((duration * fillPercent) / 100);
+    let minutes = 0;
+    let seconds = timeRemaining;
+    if (timeRemaining > 60) {
+      const minutes = timeRemaining / 60;
+      const seconds = timeRemaining % 60;
+    }
+
+    let formattedTime = minutes + ':' + seconds;
+
+    if (seconds < 10) {
+      formattedTime = minutes + ':0' + seconds;
+    }
+    
+    return formattedTime;
   }
 
   _renderProgress = () => {
