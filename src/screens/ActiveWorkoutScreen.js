@@ -9,14 +9,18 @@ import Exercise from '../models/Exercise';
 
 class ActiveWorkoutScreen extends React.PureComponent {
 
+  isTimerRunning = false;
+  isExercisePaused = false;
+  timerFill = 100;
+
   constructor(props) {
     super(props);
 
-    const newExercise1 = new Exercise('Push up', 10, 1);
-    const newExercise2 = new Exercise('Pull up', 11, 5);
-    const newExercise3 = new Exercise('Squat', 12, 4);
-    const newExercise4 = new Exercise('Deadlift', 13, 3);
-    const newExercise5 = new Exercise('Bench Press', 14, 2);
+    const newExercise1 = new Exercise('Push up', 5, 1);
+    const newExercise2 = new Exercise('Pull up', 6, 5);
+    const newExercise3 = new Exercise('Squat', 7, 4);
+    const newExercise4 = new Exercise('Deadlift', 8, 3);
+    const newExercise5 = new Exercise('Bench Press', 9, 2);
 
     const exercises = [newExercise1, newExercise2, newExercise3, newExercise4, newExercise5];
     const duration = exercises.reduce((accumulator, currentValue) => {
@@ -27,9 +31,7 @@ class ActiveWorkoutScreen extends React.PureComponent {
 
     this.state = {
       exercises: newWorkout.exercises,
-      currentExerciseIndex: 0,
-      isTimerRunning: false,
-      timerFill: 100,
+      currentExerciseIndex: 0
     }
   }
 
@@ -63,34 +65,53 @@ class ActiveWorkoutScreen extends React.PureComponent {
   }
 
   _onPlayButtonPress = () => {
-    if (this.state.isTimerRunning) {
+    if (this.isTimerRunning) {
       this._pauseExercise();
-    } else {
+    } else if (this.isExercisePaused) {
       let {exercise, exerciseIndex} = this._getExercise(this.state.exercises, this.state.currentExerciseIndex);
-      this.setState({ isTimerRunning: true}, () => {
-          this._startExercise(exercise);
-      });
+      this._resumeExercise(exercise, this.timerFill);
+    }
+    else {
+      let {exercise, exerciseIndex} = this._getExercise(this.state.exercises, this.state.currentExerciseIndex);
+      this.isTimerRunning = true;
+      this._startExercise(exercise);
     }
   }
 
   _pauseExercise = () => {
-    this.circularProgress.reAnimate(this.state.timerFill, this.state.timerFill, 0, Easing.bounce);
+    this.isTimerRunning = false;
+    this.isExercisePaused = true;
+    this.circularProgress.pause();
+  } 
+
+  _resumeExercise = (exercise, remainingPercent) => {
+    const remainingTime = (exercise.duration * (remainingPercent / 100)) * 1000;
+    this.circularProgress.animate(1, remainingTime, Easing.linear);
+    this.isExercisePaused = false;
+    this.isTimerRunning = true;
   }
 
   _startExercise = (exercise) => {
+    this.isTimerRunning = true;
     this.circularProgress.reAnimate(100, 1, exercise.duration * 1000, Easing.linear);
   }
 
   _onExerciseEnd = () => {
-    let {exercise, exerciseIndex} = this._getExercise(this.state.exercises, this.state.currentExerciseIndex + 1);
+    const nextIndex = this.state.currentExerciseIndex + 1;
+    const {exercise, exerciseIndex} = this._getExercise(this.state.exercises, nextIndex);
     console.log(exerciseIndex, exercise);
-    this.setState({ currentExerciseIndex: exerciseIndex }, () => {
+    this._setNextExercise(exerciseIndex, exercise);
+  }
+
+  _setNextExercise = (index, exercise) => {
+    this.setState({ currentExerciseIndex: index }, () => {
       this._startExercise(exercise);
     });
   }
 
   _onAnimationEnd = () => {
-    if (this.state.isTimerRunning) {
+    if (this.isTimerRunning) {
+      this.isTimerRunning = false;
       this._onExerciseEnd();
     }
   }
@@ -100,8 +121,8 @@ class ActiveWorkoutScreen extends React.PureComponent {
     let minutes = 0;
     let seconds = timeRemaining;
     if (timeRemaining > 60) {
-      const minutes = timeRemaining / 60;
-      const seconds = timeRemaining % 60;
+      minutes = timeRemaining / 60;
+      seconds = timeRemaining % 60;
     }
 
     let formattedTime = minutes + ':' + seconds;
@@ -119,18 +140,20 @@ class ActiveWorkoutScreen extends React.PureComponent {
     return (
       <AnimatedCircularProgress
         ref={(ref) => this.circularProgress = ref}
-        fill={this.state.timerFill}
+        fill={100}
         rotation={-360}
         size={200}
         width={4}
         tintColor='red'
         onAnimationComplete={this._onAnimationEnd}
       >
-      {(fill) => (
+      {(fill) => {
+        this.timerFill = fill;
+        return (
         <Text style={[styles.timerTextStyle, {color:Colors.DarkGray}]}>
           { exercise.name + this._getTimerString(exercise.duration, fill) }
         </Text>
-      )}
+      )}}
       </AnimatedCircularProgress>
     )
   }

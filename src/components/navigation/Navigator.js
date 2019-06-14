@@ -14,7 +14,7 @@ import WorkoutPreviewScreen from '../../screens/WorkoutPreviewScreen';
 import ActiveWorkoutScreen from '../../screens/ActiveWorkoutScreen';
 
 const TESTING = true;
-const TEST_ROUTE = 'DrawerNavigation';
+const TEST_ROUTE = 'ActiveWorkout';
 const TEST_SCREEN = 'Home';
 
 openDrawer = (navigation) => {
@@ -90,6 +90,14 @@ const AppNavigator = createStackNavigator({
   LoginStack: { screen : LoginStack },
   DrawerNavigation: { screen: DrawerNavigation },
   MainStack: { screen: MainStack },
+  ActiveWorkout: {
+    screen: ActiveWorkoutScreen,
+    navigationOptions: ({ navigation }) => ({
+      headerMode: 'none',
+      title: 'test',
+    })
+  }
+
 }, {
   headerMode: 'none',
   initialRouteName: TESTING ? TEST_ROUTE : 'LoginStack'
