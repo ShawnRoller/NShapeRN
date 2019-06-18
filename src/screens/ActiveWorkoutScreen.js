@@ -31,7 +31,8 @@ class ActiveWorkoutScreen extends React.PureComponent {
 
     this.state = {
       exercises: newWorkout.exercises,
-      currentExerciseIndex: 0
+      currentExerciseIndex: 0,
+      currentExercise: {}
     }
   }
 
@@ -41,9 +42,8 @@ class ActiveWorkoutScreen extends React.PureComponent {
   }
 
   _getSortedExercises = (exercises) => {
-    // TODO: test this
     const sortedData = exercises.sort((a, b) => {
-      return a.order < b.order;
+      return (a.order < b.order) ? -1 : (a.order > b.order) ? 1 : 0;
     });
     return sortedData;
   }
@@ -104,7 +104,7 @@ class ActiveWorkoutScreen extends React.PureComponent {
   }
 
   _setNextExercise = (index, exercise) => {
-    this.setState({ currentExerciseIndex: index }, () => {
+    this.setState({ currentExerciseIndex: index, currentExercise: exercise }, () => {
       this._startExercise(exercise);
     });
   }
