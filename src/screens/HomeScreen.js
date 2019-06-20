@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Image, Dimensions, Slider, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { ThemeColor } from '../components/Theme';
-import { Button, SubContainer } from '../components/common';
+import { TextButton, SubContainer } from '../components/common';
 
 const { width, height } = Dimensions.get('window');
 
@@ -72,10 +72,10 @@ class HomeScreen extends PureComponent {
         </View>
         <View style={styles.subViewStyle}>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this._onStartButtonPressed}>Start Workout</Button>
+          <TextButton backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this._onStartButtonPressed}>Start Workout</TextButton>
         </SubContainer>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this._onCustomButtonPressed}>Custom Workout</Button>
+          <TextButton backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this._onCustomButtonPressed}>Custom Workout</TextButton>
         </SubContainer>
         </View>
       </SafeAreaView>

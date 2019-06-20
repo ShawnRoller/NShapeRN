@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { View, Image, Dimensions, LayoutAnimation, Alert } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
-import { Input, Button, KBAvoidingContainer, SubContainer, LoadingOverlay } from '../components/common';
+import { Input, TextButton, KBAvoidingContainer, SubContainer, LoadingOverlay } from '../components/common';
 import firebase from 'firebase';
 import firebaseconfig from '../config/firebaseconfig';
 import FirebaseAPI from '../components/api/FirebaseAPI';
@@ -180,10 +180,10 @@ class LoginScreen extends PureComponent {
     return (
       <View>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this._onLoginPress}>Log In</Button>
+          <TextButton backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this._onLoginPress}>Log In</TextButton>
         </SubContainer>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this._onSignupPress}>Sign Up</Button>
+          <TextButton backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this._onSignupPress}>Sign Up</TextButton>
         </SubContainer>
       </View>
     );
@@ -210,10 +210,10 @@ class LoginScreen extends PureComponent {
             />
         </SubContainer>
         <SubContainer>
-          <Button backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this._onButtonPress}>{this.state.loginType}</Button>
+          <TextButton backgroundColor={ThemeColor} textColor='#fff' shadow fontSize={20} onPress={this._onButtonPress}>{this.state.loginType}</TextButton>
         </SubContainer>
         <SubContainer>
-          <Button textColor='#666666' fontSize={15} onPress={this._onCancelPress}>cancel</Button>
+          <TextButton textColor='#666666' fontSize={15} onPress={this._onCancelPress}>cancel</TextButton>
         </SubContainer>
       </View>
     );

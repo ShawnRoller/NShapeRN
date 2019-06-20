@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
-import { SimpleTableView, Button, SubContainer } from '../components/common/';
+import { SimpleTableView, TextButton, SubContainer } from '../components/common/';
 import { ThemeColor } from '../components/Theme';
 
 class WorkoutPreviewScreen extends React.PureComponent {
@@ -59,9 +59,9 @@ class WorkoutPreviewScreen extends React.PureComponent {
       <SafeAreaView style={styles.containerStyle}>
         <SimpleTableView data={this.state.cells} onSwitchToggled={this._onSwitchToggled} onPressItem={() => {}}/>
         <SubContainer style={styles.footerStyle}>
-          <Button shadow onPress={this._onStartPress} backgroundColor={ThemeColor} textColor='#fff' fontSize={20}>
+          <TextButton shadow onPress={this._onStartPress} backgroundColor={ThemeColor} textColor='#fff' fontSize={20}>
             Start Workout
-          </Button>
+          </TextButton>
         </SubContainer>
       </SafeAreaView>
     );

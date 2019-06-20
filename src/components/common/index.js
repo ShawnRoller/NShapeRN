@@ -1,5 +1,6 @@
 export * from './Input';
-export * from './Button';
+export * from './BaseButton';
+export * from './TextButton';
 export * from './Container';
 export * from './SubContainer';
 export * from './Spinner';

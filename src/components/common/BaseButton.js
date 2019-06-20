@@ -1,12 +1,12 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 
-const Button = ({ onPress, textColor, fontSize, backgroundColor, shadow, children }) => {
+const BaseButton = ({ onPress, shadow, backgroundColor, children }) => {
 
-  var shadowColor;
-  var shadowOffset;
-  var shadowOpacity;
-  var shadowRadius;
+  let shadowColor;
+  let shadowOffset;
+  let shadowOpacity;
+  let shadowRadius;
   if (shadow) {
     shadowColor = '#000';
     shadowOpacity =  0.3;
@@ -16,12 +16,10 @@ const Button = ({ onPress, textColor, fontSize, backgroundColor, shadow, childre
 
   return (
     <TouchableOpacity onPress={onPress} style={[styles.buttonStyle, {backgroundColor}, {shadowColor}, {shadowOpacity}, {shadowRadius}, {shadowOffset} ]}>
-      <Text style={[styles.textStyle, {color: textColor}, {fontSize}]}>
-        {children}
-      </Text>
+      {children}
     </TouchableOpacity>
   );
-};
+}
 
 const styles = StyleSheet.create({
   buttonStyle: {
@@ -32,13 +30,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     height: 50,
     justifyContent: 'center'
-  },
-  textStyle: {
-    fontWeight: '600',
-    paddingTop: 10,
-    paddingBottom: 10,
-    alignSelf: 'center'
   }
 });
 
-export { Button };
+export { BaseButton };

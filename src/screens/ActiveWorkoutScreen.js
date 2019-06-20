@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, Text, Easing } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import { Button } from '../components/common/Button';
+import { TextButton } from '../components/common/TextButton';
 import * as Colors from '../components/Theme';
 import Workout from '../models/Workout';
 import Exercise from '../models/Exercise';
@@ -162,7 +162,7 @@ class ActiveWorkoutScreen extends React.PureComponent {
     return (
       <View style={styles.containerStyle}>
         <View style={styles.exercisesContainerStyle}>
-          <Button onPress={this._onPlayButtonPress}>start timer</Button>
+          <TextButton onPress={this._onPlayButtonPress}>start timer</TextButton>
         </View>
         <View style={styles.clockContainerStyle}>
           {this._renderProgress()}
