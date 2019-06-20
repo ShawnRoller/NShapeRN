@@ -1,8 +1,8 @@
 'use strict';
 import React from 'react';
-import { View, Text, Easing } from 'react-native';
+import { SafeAreaView, View, Text, Easing } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import { TextButton } from '../components/common/TextButton';
+import { BaseButton } from '../components/common';
 import * as Colors from '../components/Theme';
 import Workout from '../models/Workout';
 import Exercise from '../models/Exercise';
@@ -38,7 +38,9 @@ class ActiveWorkoutScreen extends React.PureComponent {
 
   componentDidMount() {
     const exercises = this._getSortedExercises(this.state.exercises);
-    this.setState({ exercises });
+    const { currentExerciseIndex } = this.state;
+    const currentExercise = exercises.length > currentExerciseIndex ? exercises[currentExerciseIndex] : {}
+    this.setState({ exercises, currentExercise });
   }
 
   _getSortedExercises = (exercises) => {
@@ -76,6 +78,14 @@ class ActiveWorkoutScreen extends React.PureComponent {
       this.isTimerRunning = true;
       this._startExercise(exercise);
     }
+  }
+
+  _onPreviousButtonPress = () => {
+
+  }
+
+  _onNextButtonPress = () => {
+
   }
 
   _pauseExercise = () => {
@@ -151,7 +161,7 @@ class ActiveWorkoutScreen extends React.PureComponent {
         this.timerFill = fill;
         return (
         <Text style={[styles.timerTextStyle, {color:Colors.DarkGray}]}>
-          { exercise.name + this._getTimerString(exercise.duration, fill) }
+          { this._getTimerString(exercise.duration, fill) }
         </Text>
       )}}
       </AnimatedCircularProgress>
@@ -160,16 +170,19 @@ class ActiveWorkoutScreen extends React.PureComponent {
 
   render() {
     return (
-      <View style={styles.containerStyle}>
+      <SafeAreaView style={styles.containerStyle}>
         <View style={styles.exercisesContainerStyle}>
-          <TextButton onPress={this._onPlayButtonPress}>start timer</TextButton>
+          <Text style={styles.timerTextStyle}>{this.state.currentExercise.name}</Text>
         </View>
         <View style={styles.clockContainerStyle}>
           {this._renderProgress()}
         </View>
         <View style={styles.controlsContainerStyle}>
+          <BaseButton onPress={this._onPreviousButtonPress}><Text>rewind</Text></BaseButton>
+          <BaseButton onPress={this._onPlayButtonPress}><Text>play/pause</Text></BaseButton>
+          <BaseButton onPress={this._onNextButtonPress}><Text>fastforward</Text></BaseButton>
         </View>
-      </View>
+      </SafeAreaView>
     )
   }
 }
@@ -178,16 +191,20 @@ const styles = {
   containerStyle: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
   },
   clockContainerStyle: {
     flex: 1,
   },
   exercisesContainerStyle: {
     flex: 1,
+    justifyContent: 'center'
+  },
+  exerciseTextStyle: {
+    fontSize: 49,
   },
   controlsContainerStyle: {
-    flex: 1
+    flex: 1,
+    flexDirection: 'row'
   },
   timerTextStyle: {
     fontSize: 49,
