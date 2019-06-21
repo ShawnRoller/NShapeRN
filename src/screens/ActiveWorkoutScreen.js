@@ -81,11 +81,19 @@ class ActiveWorkoutScreen extends React.PureComponent {
   }
 
   _onPreviousButtonPress = () => {
-
+    const { currentExerciseIndex, exercises } = this.state;
+    if (currentExerciseIndex - 1 >= 0) {
+      const exercise = this._getExercise(exercises, currentExerciseIndex - 1);
+      this._setNextExercise(currentExerciseIndex, exercise);
+    }
   }
 
   _onNextButtonPress = () => {
-
+    const { currentExerciseIndex, exercises } = this.state;
+    if (currentExerciseIndex + 1 < exercises.length) {
+      const exercise = this._getExercise(exercises, currentExerciseIndex + 1);
+      this._setNextExercise(currentExerciseIndex, exercise);
+    }
   }
 
   _pauseExercise = () => {
@@ -115,7 +123,7 @@ class ActiveWorkoutScreen extends React.PureComponent {
 
   _setNextExercise = (index, exercise) => {
     this.setState({ currentExerciseIndex: index, currentExercise: exercise }, () => {
-      this._startExercise(exercise);
+      if (!this.isExercisePaused) { this._startExercise(exercise); }
     });
   }
 
