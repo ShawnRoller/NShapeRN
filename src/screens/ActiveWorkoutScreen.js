@@ -1,6 +1,6 @@
 'use strict';
 import React from 'react';
-import { SafeAreaView, View, Text, Easing } from 'react-native';
+import { Image, SafeAreaView, View, Text, Easing } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { BaseButton } from '../components/common';
 import * as Colors from '../components/Theme';
@@ -176,6 +176,53 @@ class ActiveWorkoutScreen extends React.PureComponent {
     )
   }
 
+  _renderButtonControls = () => {
+    const rewindImagePath = '../images/activeWorkout/rewind.png';
+    const fastforwardImagePath = '../images/activeWorkout/fastforward.png';
+
+    return (
+      <View style={styles.controlsContainerStyle}>
+        <BaseButton onPress={this._onPreviousButtonPress}>
+          <Image 
+            source={require(rewindImagePath)} 
+            style={styles.controlButtonStyle} 
+            resizeMode='contain' 
+          />
+        </BaseButton>
+        {this._renderPausePlayButton()}
+        <BaseButton onPress={this._onNextButtonPress}>
+          <Image 
+            source={require(fastforwardImagePath)} 
+            style={styles.controlButtonStyle} 
+            resizeMode='contain' 
+          /></BaseButton>
+      </View>
+    );
+  }
+
+  _renderPausePlayButton = (isExercisePaused, isTimerRunning) => {
+    const pauseImagePath = '../images/activeWorkout/pause.png';
+    const playImagePath = '../images/activeWorkout/play.png';
+
+    if (isExercisePaused || !isTimerRunning) {
+      return (
+        <Image 
+          source={require(playImagePath)} 
+          style={styles.controlButtonStyle} 
+          resizeMode='contain' 
+        />
+      );
+    } else {
+      return (
+        <Image 
+          source={require(pauseImagePath)} 
+          style={styles.controlButtonStyle} 
+          resizeMode='contain' 
+        />
+      );
+    }
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.containerStyle}>
@@ -185,11 +232,7 @@ class ActiveWorkoutScreen extends React.PureComponent {
         <View style={styles.clockContainerStyle}>
           {this._renderProgress()}
         </View>
-        <View style={styles.controlsContainerStyle}>
-          <BaseButton onPress={this._onPreviousButtonPress}><Text>rewind</Text></BaseButton>
-          <BaseButton onPress={this._onPlayButtonPress}><Text>play/pause</Text></BaseButton>
-          <BaseButton onPress={this._onNextButtonPress}><Text>fastforward</Text></BaseButton>
-        </View>
+        {this._renderButtonControls()}
       </SafeAreaView>
     )
   }
@@ -212,10 +255,18 @@ const styles = {
   },
   controlsContainerStyle: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   timerTextStyle: {
     fontSize: 49,
+  },
+  controlButtonStyle: {
+    marginLeft: 10,
+    marginRight: 10,
+    width: 30,
+    height: 30
   }
 }
 
