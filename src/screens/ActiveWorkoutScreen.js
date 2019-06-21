@@ -7,6 +7,11 @@ import * as Colors from '../components/Theme';
 import Workout from '../models/Workout';
 import Exercise from '../models/Exercise';
 
+const pauseImagePath = '../images/activeWorkout/pause.png';
+const playImagePath = '../images/activeWorkout/play.png';
+const rewindImagePath = '../images/activeWorkout/rewind.png';
+const fastforwardImagePath = '../images/activeWorkout/fastforward.png';
+
 class ActiveWorkoutScreen extends React.PureComponent {
 
   isTimerRunning = false;
@@ -177,9 +182,6 @@ class ActiveWorkoutScreen extends React.PureComponent {
   }
 
   _renderButtonControls = () => {
-    const rewindImagePath = '../images/activeWorkout/rewind.png';
-    const fastforwardImagePath = '../images/activeWorkout/fastforward.png';
-
     return (
       <View style={styles.controlsContainerStyle}>
         <BaseButton onPress={this._onPreviousButtonPress}>
@@ -201,9 +203,6 @@ class ActiveWorkoutScreen extends React.PureComponent {
   }
 
   _renderPausePlayButton = (isExercisePaused, isTimerRunning) => {
-    const pauseImagePath = '../images/activeWorkout/pause.png';
-    const playImagePath = '../images/activeWorkout/play.png';
-
     if (isExercisePaused || !isTimerRunning) {
       return (
         <Image 
@@ -263,8 +262,8 @@ const styles = {
     fontSize: 49,
   },
   controlButtonStyle: {
-    marginLeft: 10,
-    marginRight: 10,
+    // marginLeft: 10,
+    // marginRight: 10,
     width: 30,
     height: 30
   }
