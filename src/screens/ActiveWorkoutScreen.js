@@ -262,8 +262,6 @@ const styles = {
     fontSize: 49,
   },
   controlButtonStyle: {
-    // marginLeft: 10,
-    // marginRight: 10,
     width: 30,
     height: 30
   }
