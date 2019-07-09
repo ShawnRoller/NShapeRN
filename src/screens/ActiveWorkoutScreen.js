@@ -197,7 +197,8 @@ class ActiveWorkoutScreen extends React.PureComponent {
             source={require(fastforwardImagePath)} 
             style={styles.controlButtonStyle} 
             resizeMode='contain' 
-          /></BaseButton>
+          />
+          </BaseButton>
       </View>
     );
   }
@@ -205,19 +206,23 @@ class ActiveWorkoutScreen extends React.PureComponent {
   _renderPausePlayButton = (isExercisePaused, isTimerRunning) => {
     if (isExercisePaused || !isTimerRunning) {
       return (
-        <Image 
-          source={require(playImagePath)} 
-          style={styles.controlButtonStyle} 
-          resizeMode='contain' 
-        />
+        <BaseButton onPress={this._onNextButtonPress}>
+          <Image 
+            source={require(playImagePath)} 
+            style={styles.controlButtonStyle} 
+            resizeMode='contain' 
+          />
+        </BaseButton>
       );
     } else {
       return (
-        <Image 
-          source={require(pauseImagePath)} 
-          style={styles.controlButtonStyle} 
-          resizeMode='contain' 
-        />
+        <BaseButton onPress={this._onNextButtonPress}>
+          <Image 
+            source={require(pauseImagePath)} 
+            style={styles.controlButtonStyle} 
+            resizeMode='contain' 
+          />
+        </BaseButton>
       );
     }
   }
@@ -262,8 +267,9 @@ const styles = {
     fontSize: 49,
   },
   controlButtonStyle: {
-    width: 30,
-    height: 30
+    width: 50,
+    height: 50,
+    alignSelf: 'center'
   }
 }
 
