@@ -191,7 +191,9 @@ class ActiveWorkoutScreen extends React.PureComponent {
             resizeMode='contain' 
           />
         </BaseButton>
-        {this._renderPausePlayButton()}
+        <BaseButton onPress={this._onPlayButtonPress}>
+          {this._renderPausePlayButton()}
+        </BaseButton>
         <BaseButton onPress={this._onNextButtonPress}>
           <Image 
             source={require(fastforwardImagePath)} 
@@ -206,23 +208,19 @@ class ActiveWorkoutScreen extends React.PureComponent {
   _renderPausePlayButton = (isExercisePaused, isTimerRunning) => {
     if (isExercisePaused || !isTimerRunning) {
       return (
-        <BaseButton onPress={this._onNextButtonPress}>
-          <Image 
-            source={require(playImagePath)} 
-            style={styles.controlButtonStyle} 
-            resizeMode='contain' 
-          />
-        </BaseButton>
+        <Image 
+          source={require(playImagePath)} 
+          style={styles.controlButtonStyle} 
+          resizeMode='contain' 
+        />
       );
     } else {
       return (
-        <BaseButton onPress={this._onNextButtonPress}>
-          <Image 
-            source={require(pauseImagePath)} 
-            style={styles.controlButtonStyle} 
-            resizeMode='contain' 
-          />
-        </BaseButton>
+        <Image 
+          source={require(pauseImagePath)} 
+          style={styles.controlButtonStyle} 
+          resizeMode='contain' 
+        />
       );
     }
   }
