@@ -15,7 +15,7 @@ const fastforwardImagePath = '../images/activeWorkout/fastforward.png';
 class ActiveWorkoutScreen extends React.PureComponent {
 
   isTimerRunning = false;
-  isExercisePaused = false;
+  isExercisePaused = true;
   timerFill = 100;
 
   constructor(props) {
@@ -61,6 +61,10 @@ class ActiveWorkoutScreen extends React.PureComponent {
       console.log('fail');
       return;
     }
+
+    if (index < 0) {
+      index = 0;
+    }
     
     let exerciseIndex = 0;
     let exercise = exercises[exerciseIndex];
@@ -86,22 +90,19 @@ class ActiveWorkoutScreen extends React.PureComponent {
   }
 
   _onPreviousButtonPress = () => {
-    const { currentExerciseIndex, exercises } = this.state;
-    if (currentExerciseIndex - 1 >= 0) {
-      const exercise = this._getExercise(exercises, currentExerciseIndex - 1);
-      this._setNextExercise(currentExerciseIndex, exercise);
-    }
+    this._pauseExercise();
+    this._onExerciseEnd(true);
   }
 
   _onNextButtonPress = () => {
-    const { currentExerciseIndex, exercises } = this.state;
-    if (currentExerciseIndex + 1 < exercises.length) {
-      const exercise = this._getExercise(exercises, currentExerciseIndex + 1);
-      this._setNextExercise(currentExerciseIndex, exercise);
-    }
+    this._pauseExercise();
+    this._onExerciseEnd();
   }
 
   _pauseExercise = () => {
+    if (!this.isTimerRunning || this.isExercisePaused) {
+      return;
+    }
     this.isTimerRunning = false;
     this.isExercisePaused = true;
     this.circularProgress.pause();
@@ -116,11 +117,12 @@ class ActiveWorkoutScreen extends React.PureComponent {
 
   _startExercise = (exercise) => {
     this.isTimerRunning = true;
+    this.isExercisePaused = false;
     this.circularProgress.reAnimate(100, 1, exercise.duration * 1000, Easing.linear);
   }
 
-  _onExerciseEnd = () => {
-    const nextIndex = this.state.currentExerciseIndex + 1;
+  _onExerciseEnd = (goToPrevious) => {
+    const nextIndex = goToPrevious ? this.state.currentExerciseIndex - 1 : this.state.currentExerciseIndex + 1;
     const {exercise, exerciseIndex} = this._getExercise(this.state.exercises, nextIndex);
     console.log(exerciseIndex, exercise);
     this._setNextExercise(exerciseIndex, exercise);
