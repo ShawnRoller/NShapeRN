@@ -71,6 +71,9 @@ class ActiveWorkoutScreen extends React.PureComponent {
     if (exercises.length > index) {
       exerciseIndex = index;
       exercise = exercises[exerciseIndex];
+    } else {
+      // This is the end of the road
+      exerciseIndex = -1;
     }
     return {exercise, exerciseIndex};
   }
@@ -80,10 +83,18 @@ class ActiveWorkoutScreen extends React.PureComponent {
       this._pauseExercise();
     } else if (this.isExercisePaused) {
       let {exercise, exerciseIndex} = this._getExercise(this.state.exercises, this.state.currentExerciseIndex);
+      if (exerciseIndex === -1) {
+        // TODO: end the workout?
+
+      }
       this._resumeExercise(exercise, this.timerFill);
     }
     else {
       let {exercise, exerciseIndex} = this._getExercise(this.state.exercises, this.state.currentExerciseIndex);
+      if (exerciseIndex === -1) {
+        // TODO: end the workout?
+
+      }
       this.isTimerRunning = true;
       this._startExercise(exercise);
     }
@@ -161,6 +172,11 @@ class ActiveWorkoutScreen extends React.PureComponent {
 
   _renderProgress = () => {
     let { exercise, exerciseIndex } = this._getExercise(this.state.exercises, this.state.currentExerciseIndex);
+
+    if (exerciseIndex === -1) {
+      // TODO: end the workout?
+
+    }
 
     return (
       <AnimatedCircularProgress
