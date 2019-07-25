@@ -5,7 +5,7 @@ const BORDER_RADIUS = 12;
 
 const TransparentCard = (props) => {
   return (
-    <View style={[props.style, styles.containerStyle]}>
+    <View style={[styles.containerStyle, props.style]}>
       {props.children}
     </View>
   );

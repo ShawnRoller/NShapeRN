@@ -1,8 +1,8 @@
 'use strict';
 import React from 'react';
-import { Image, SafeAreaView, View, Text, Easing } from 'react-native';
+import { Image, SafeAreaView, View, Text, Easing, Dimensions } from 'react-native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import { BaseButton } from '../components/common';
+import { BaseButton, TransparentCard } from '../components/common';
 import * as Colors from '../components/Theme';
 import Workout from '../models/Workout';
 import Exercise from '../models/Exercise';
@@ -11,6 +11,7 @@ const pauseImagePath = '../images/activeWorkout/pause.png';
 const playImagePath = '../images/activeWorkout/play.png';
 const rewindImagePath = '../images/activeWorkout/rewind.png';
 const fastforwardImagePath = '../images/activeWorkout/fastforward.png';
+const screenWidth = Dimensions.get('window').width;
 
 class ActiveWorkoutScreen extends React.PureComponent {
 
@@ -26,8 +27,9 @@ class ActiveWorkoutScreen extends React.PureComponent {
     const newExercise3 = new Exercise('Squat', 7, 4);
     const newExercise4 = new Exercise('Deadlift', 8, 3);
     const newExercise5 = new Exercise('Bench Press', 9, 2);
+    const newExercise6 = new Exercise('Hoodilly Crushers', 10, 6);
 
-    const exercises = [newExercise1, newExercise2, newExercise3, newExercise4, newExercise5];
+    const exercises = [newExercise1, newExercise2, newExercise3, newExercise4, newExercise5, newExercise6];
     const duration = exercises.reduce((accumulator, currentValue) => {
       return accumulator + currentValue;
     });
@@ -243,11 +245,19 @@ class ActiveWorkoutScreen extends React.PureComponent {
     }
   }
 
+  _renderExerciseName = (name) => {
+    return (
+      <TransparentCard style={styles.titleContainerStyle}>
+        <Text style={styles.titleTextStyle}>{name}</Text>
+      </TransparentCard>
+    );
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.containerStyle}>
         <View style={styles.exercisesContainerStyle}>
-          <Text style={styles.timerTextStyle}>{this.state.currentExercise.name}</Text>
+          {this._renderExerciseName(this.state.currentExercise.name)}
         </View>
         <View style={styles.clockContainerStyle}>
           {this._renderProgress()}
@@ -286,6 +296,19 @@ const styles = {
     width: 50,
     height: 50,
     alignSelf: 'center'
+  },
+  titleContainerStyle: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    width: screenWidth - 100,
+    height: 100,
+    backgroundColor: Colors.ThemeColor
+  },
+  titleTextStyle: {
+    alignSelf: 'center',
+    fontSize: 49,
+    color: '#ffffff'
   }
 }
 
