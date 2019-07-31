@@ -36,6 +36,9 @@ class ActiveWorkoutScreen extends React.PureComponent {
 
     const newWorkout = new Workout('Test1', exercises, duration);
 
+    const endWorkout = new Exercise('Complete!', newWorkout.exercises.length + 1, 0);
+    newWorkout.exercises.push(endWorkout);
+
     this.state = {
       exercises: newWorkout.exercises,
       currentExerciseIndex: 0,
@@ -143,7 +146,9 @@ class ActiveWorkoutScreen extends React.PureComponent {
 
   _setNextExercise = (index, exercise) => {
     this.setState({ currentExerciseIndex: index, currentExercise: exercise }, () => {
-      if (!this.isExercisePaused) { this._startExercise(exercise); }
+      if (!this.isExercisePaused) { 
+        this._startExercise(exercise);
+      }
     });
   }
 
