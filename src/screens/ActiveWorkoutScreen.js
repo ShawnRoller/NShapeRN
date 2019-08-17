@@ -29,20 +29,21 @@ class ActiveWorkoutScreen extends React.PureComponent {
     const newExercise5 = new Exercise('Bench Press', 9, 2);
     const newExercise6 = new Exercise('Hoodilly Crushers', 10, 6);
 
-    const exercises = [newExercise1, newExercise2, newExercise3, newExercise4, newExercise5, newExercise6];
+    const exercises = [newExercise1] //, newExercise2, newExercise3, newExercise4, newExercise5, newExercise6];
     const duration = exercises.reduce((accumulator, currentValue) => {
       return accumulator + currentValue;
     });
 
     const newWorkout = new Workout('Test1', exercises, duration);
 
-    const endWorkout = new Exercise('Complete!', newWorkout.exercises.length + 1, 0);
+    const endWorkout = new Exercise('Complete!', 0, newWorkout.exercises.length + 1);
     newWorkout.exercises.push(endWorkout);
 
     this.state = {
       exercises: newWorkout.exercises,
       currentExerciseIndex: 0,
-      currentExercise: {}
+      currentExercise: {},
+      playButtonImage: playImagePath
     }
   }
 
@@ -83,25 +84,31 @@ class ActiveWorkoutScreen extends React.PureComponent {
     return {exercise, exerciseIndex};
   }
 
+  _endWorkout = () => {
+    this.setState({ playButtonImage: playImagePath }, () => {
+      this.isTimerRunning = false;
+      this.isExercisePaused = false;
+      this.timerFill = 100;
+    });
+  }
+
   _onPlayButtonPress = () => {
     if (this.isTimerRunning) {
       this._pauseExercise();
-    } else if (this.isExercisePaused) {
+    } else {
+      this.setState({ playButtonImage: pauseImagePath });
       let {exercise, exerciseIndex} = this._getExercise(this.state.exercises, this.state.currentExerciseIndex);
       if (exerciseIndex === -1) {
         // TODO: end the workout?
-
+        this._endWorkout();
+      } else {
+        if (this.isExercisePaused) {
+          this._resumeExercise(exercise, this.timerFill);
+        } else {
+          this.isTimerRunning = true;
+          this._startExercise(exercise);
+        }
       }
-      this._resumeExercise(exercise, this.timerFill);
-    }
-    else {
-      let {exercise, exerciseIndex} = this._getExercise(this.state.exercises, this.state.currentExerciseIndex);
-      if (exerciseIndex === -1) {
-        // TODO: end the workout?
-
-      }
-      this.isTimerRunning = true;
-      this._startExercise(exercise);
     }
   }
 
@@ -122,6 +129,7 @@ class ActiveWorkoutScreen extends React.PureComponent {
     this.isTimerRunning = false;
     this.isExercisePaused = true;
     this.circularProgress.pause();
+    this.setState({ playButtonImage: playImagePath });
   } 
 
   _resumeExercise = (exercise, remainingPercent) => {
@@ -140,8 +148,12 @@ class ActiveWorkoutScreen extends React.PureComponent {
   _onExerciseEnd = (goToPrevious) => {
     const nextIndex = goToPrevious ? this.state.currentExerciseIndex - 1 : this.state.currentExerciseIndex + 1;
     const {exercise, exerciseIndex} = this._getExercise(this.state.exercises, nextIndex);
-    console.log(exerciseIndex, exercise);
-    this._setNextExercise(exerciseIndex, exercise);
+    if (exerciseIndex == -1) {
+      this._endWorkout();
+    } else {
+      console.log(`Starting exerciseIndex: ${exerciseIndex} and exercise: ${exercise}`);
+      this._setNextExercise(exerciseIndex, exercise);
+    }
   }
 
   _setNextExercise = (index, exercise) => {
@@ -182,7 +194,7 @@ class ActiveWorkoutScreen extends React.PureComponent {
 
     if (exerciseIndex === -1) {
       // TODO: end the workout?
-
+      this._endWorkout();
     }
 
     return (
@@ -217,7 +229,7 @@ class ActiveWorkoutScreen extends React.PureComponent {
           />
         </BaseButton>
         <BaseButton onPress={this._onPlayButtonPress}>
-          {this._renderPausePlayButton()}
+          {this._renderPausePlayButton(this.isExercisePaused, this.isTimerRunning)}
         </BaseButton>
         <BaseButton onPress={this._onNextButtonPress}>
           <Image 
