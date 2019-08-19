@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import Navigator from './components/navigation/Navigator';
 
+
 class App extends Component {
   render() {
     return (
