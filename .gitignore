@@ -57,3 +57,6 @@ buck-out/
 
 #sensitive data
 firebaseconfig.js
+
+# Jest
+.jest/
