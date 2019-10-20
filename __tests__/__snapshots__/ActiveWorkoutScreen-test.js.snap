@@ -1,0 +1,361 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`activeworkoutscreen renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 12,
+            "flex": 1,
+            "opacity": 0.8,
+            "shadowColor": "#000000",
+            "shadowOffset": Object {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.7,
+            "shadowRadius": 2,
+          },
+          Object {
+            "alignSelf": "center",
+            "backgroundColor": "#f10026",
+            "height": 100,
+            "justifyContent": "center",
+            "position": "absolute",
+            "width": 650,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#ffffff",
+            "fontSize": 49,
+          }
+        }
+      >
+        Push up
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View>
+      <RNSVGSvgView
+        bbHeight={200}
+        bbWidth={200}
+        height={200}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            Object {
+              "backgroundColor": "transparent",
+            },
+            null,
+            Object {
+              "flex": 0,
+              "height": 200,
+              "width": 200,
+            },
+          ]
+        }
+        width={200}
+      >
+        <RNSVGGroup
+          fill={
+            Array [
+              0,
+              4278190080,
+            ]
+          }
+          fillOpacity={1}
+          fillRule={1}
+          font={Object {}}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "fill",
+              "fillOpacity",
+              "fillRule",
+              "stroke",
+              "strokeWidth",
+              "strokeOpacity",
+              "strokeDasharray",
+              "strokeDashoffset",
+              "strokeLinecap",
+              "strokeLinejoin",
+              "strokeMiterlimit",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={null}
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth={1}
+          x={0}
+          y={0}
+        >
+          <RNSVGGroup
+            fill={
+              Array [
+                0,
+                4278190080,
+              ]
+            }
+            fillOpacity={1}
+            fillRule={1}
+            font={Object {}}
+            matrix={
+              Array [
+                1,
+                0,
+                -0,
+                1,
+                0,
+                0,
+              ]
+            }
+            opacity={1}
+            originX={100}
+            originY={100}
+            propList={Array []}
+            rotation={-360}
+            scaleX={1}
+            scaleY={1}
+            skewX={0}
+            skewY={0}
+            stroke={null}
+            strokeDasharray={null}
+            strokeDashoffset={null}
+            strokeLinecap={0}
+            strokeLinejoin={0}
+            strokeMiterlimit={4}
+            strokeOpacity={1}
+            strokeWidth={1}
+            x={0}
+            y={0}
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "borderRadius": 96,
+            "height": 192,
+            "justifyContent": "center",
+            "left": 4,
+            "overflow": "hidden",
+            "position": "absolute",
+            "top": 4,
+            "width": 192,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontSize": 49,
+              },
+              Object {
+                "color": "#4A4A4A",
+              },
+            ]
+          }
+        >
+          0:00
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "backgroundColor": undefined,
+          "borderRadius": 5,
+          "flex": 1,
+          "height": 50,
+          "justifyContent": "center",
+          "marginLeft": 10,
+          "marginRight": 10,
+          "opacity": 1,
+          "shadowColor": undefined,
+          "shadowOffset": undefined,
+          "shadowOpacity": undefined,
+          "shadowRadius": undefined,
+        }
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={
+          Object {
+            "testUri": "../../../src/images/activeWorkout/rewind.png",
+          }
+        }
+        style={
+          Object {
+            "alignSelf": "center",
+            "height": 50,
+            "width": 50,
+          }
+        }
+      />
+    </View>
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "backgroundColor": undefined,
+          "borderRadius": 5,
+          "flex": 1,
+          "height": 50,
+          "justifyContent": "center",
+          "marginLeft": 10,
+          "marginRight": 10,
+          "opacity": 1,
+          "shadowColor": undefined,
+          "shadowOffset": undefined,
+          "shadowOpacity": undefined,
+          "shadowRadius": undefined,
+        }
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={
+          Object {
+            "testUri": "../../../src/images/activeWorkout/play.png",
+          }
+        }
+        style={
+          Object {
+            "alignSelf": "center",
+            "height": 50,
+            "width": 50,
+          }
+        }
+      />
+    </View>
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "backgroundColor": undefined,
+          "borderRadius": 5,
+          "flex": 1,
+          "height": 50,
+          "justifyContent": "center",
+          "marginLeft": 10,
+          "marginRight": 10,
+          "opacity": 1,
+          "shadowColor": undefined,
+          "shadowOffset": undefined,
+          "shadowOpacity": undefined,
+          "shadowRadius": undefined,
+        }
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={
+          Object {
+            "testUri": "../../../src/images/activeWorkout/fastforward.png",
+          }
+        }
+        style={
+          Object {
+            "alignSelf": "center",
+            "height": 50,
+            "width": 50,
+          }
+        }
+      />
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;
