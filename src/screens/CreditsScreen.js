@@ -15,6 +15,10 @@ class CreditsScreen extends React.PureComponent {
     title: 'Credits',
   }
 
+  constructor(props) {
+    super(props);
+  }
+
   _keyExtractor = (item) => item.id;
 
   _renderItem = ({item}) => {

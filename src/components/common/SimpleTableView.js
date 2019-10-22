@@ -4,6 +4,10 @@ import { SimpleCell } from './SimpleCell';
 
 class SimpleTableView extends React.PureComponent {
 
+  constructor(props) {
+    super(props);
+  }
+  
   _keyExtractor = (item) => item.id;
 
   _renderItem = ({item}) => {
