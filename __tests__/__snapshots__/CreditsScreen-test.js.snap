@@ -1,0 +1,325 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreditsScreen renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "flex": 1,
+        },
+        undefined,
+      ]
+    }
+  >
+    <RCTScrollView
+      data={
+        Array [
+          Object {
+            "id": "1",
+            "subtitle": "Development",
+            "title": "Shane Rocker",
+          },
+          Object {
+            "id": "2",
+            "subtitle": "Inspiration",
+            "title": "Lindsey Roller",
+          },
+          Object {
+            "id": "3",
+            "subtitle": "Design",
+            "title": "Jason Worrix",
+          },
+          Object {
+            "id": "4",
+            "subtitle": "QA",
+            "title": "Brony Fox",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#fff",
+                "borderBottomWidth": 1,
+                "borderColor": "#ddd",
+                "flex": 1,
+                "flexDirection": "row",
+                "height": 50,
+                "justifyContent": "space-between",
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "flex": 2,
+                    "fontWeight": "400",
+                  },
+                  Object {
+                    "color": "#333",
+                  },
+                  Object {
+                    "fontSize": 30,
+                  },
+                  Object {
+                    "alignSelf": undefined,
+                  },
+                  Object {
+                    "marginLeft": 50,
+                  },
+                ]
+              }
+            >
+              Shane Rocker
+            </Text>
+            <Text
+              style={
+                Object {
+                  "flex": 1,
+                  "fontWeight": "300",
+                }
+              }
+            >
+              Development
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#fff",
+                "borderBottomWidth": 1,
+                "borderColor": "#ddd",
+                "flex": 1,
+                "flexDirection": "row",
+                "height": 50,
+                "justifyContent": "space-between",
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "flex": 2,
+                    "fontWeight": "400",
+                  },
+                  Object {
+                    "color": "#333",
+                  },
+                  Object {
+                    "fontSize": 30,
+                  },
+                  Object {
+                    "alignSelf": undefined,
+                  },
+                  Object {
+                    "marginLeft": 50,
+                  },
+                ]
+              }
+            >
+              Lindsey Roller
+            </Text>
+            <Text
+              style={
+                Object {
+                  "flex": 1,
+                  "fontWeight": "300",
+                }
+              }
+            >
+              Inspiration
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#fff",
+                "borderBottomWidth": 1,
+                "borderColor": "#ddd",
+                "flex": 1,
+                "flexDirection": "row",
+                "height": 50,
+                "justifyContent": "space-between",
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "flex": 2,
+                    "fontWeight": "400",
+                  },
+                  Object {
+                    "color": "#333",
+                  },
+                  Object {
+                    "fontSize": 30,
+                  },
+                  Object {
+                    "alignSelf": undefined,
+                  },
+                  Object {
+                    "marginLeft": 50,
+                  },
+                ]
+              }
+            >
+              Jason Worrix
+            </Text>
+            <Text
+              style={
+                Object {
+                  "flex": 1,
+                  "fontWeight": "300",
+                }
+              }
+            >
+              Design
+            </Text>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#fff",
+                "borderBottomWidth": 1,
+                "borderColor": "#ddd",
+                "flex": 1,
+                "flexDirection": "row",
+                "height": 50,
+                "justifyContent": "space-between",
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "flex": 2,
+                    "fontWeight": "400",
+                  },
+                  Object {
+                    "color": "#333",
+                  },
+                  Object {
+                    "fontSize": 30,
+                  },
+                  Object {
+                    "alignSelf": undefined,
+                  },
+                  Object {
+                    "marginLeft": 50,
+                  },
+                ]
+              }
+            >
+              Brony Fox
+            </Text>
+            <Text
+              style={
+                Object {
+                  "flex": 1,
+                  "fontWeight": "300",
+                }
+              }
+            >
+              QA
+            </Text>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
