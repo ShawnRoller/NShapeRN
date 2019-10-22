@@ -1,5 +1,5 @@
 const firebaseconfig = {
-  apiKey: 'AIzaSyCCZk4b00Y1uI5xSdPmZOs4OAnx_9Xip1s',
+  apiKey: '',
   authDomain: 'nshape-c70dc.firebaseapp.com',
   databaseURL: 'https://nshape-c70dc.firebaseio.com',
   projectId: 'nshape-c70dc',
