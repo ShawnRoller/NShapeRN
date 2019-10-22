@@ -1,0 +1,287 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomWorkoutScreen renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "flex": 1,
+        },
+        undefined,
+      ]
+    }
+  >
+    <RCTScrollView
+      data={
+        Array [
+          Object {
+            "hasSwitch": false,
+            "id": "1",
+            "screen": "WorkoutPreview",
+            "title": "Workout 1",
+            "toggled": false,
+          },
+          Object {
+            "hasSwitch": false,
+            "id": "2",
+            "screen": "WorkoutPreview",
+            "title": "Workout 2",
+            "toggled": false,
+          },
+          Object {
+            "hasSwitch": false,
+            "id": "3",
+            "screen": "WorkoutPreview",
+            "title": "Workout 3",
+            "toggled": false,
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      updateCellsBatchingPeriod={50}
+      viewabilityConfigCallbackPairs={Array []}
+      windowSize={21}
+    >
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#fff",
+                "borderBottomWidth": 1,
+                "borderColor": "#ddd",
+                "flex": 1,
+                "flexDirection": "row",
+                "height": 50,
+                "justifyContent": "space-between",
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "flex": 2,
+                    "fontWeight": "400",
+                  },
+                  Object {
+                    "color": "#333",
+                  },
+                  Object {
+                    "fontSize": 30,
+                  },
+                  Object {
+                    "alignSelf": undefined,
+                  },
+                  Object {
+                    "marginLeft": 50,
+                  },
+                ]
+              }
+            >
+              Workout 1
+            </Text>
+            <Text
+              style={
+                Object {
+                  "flex": 1,
+                  "fontWeight": "300",
+                }
+              }
+            />
+            <Icon
+              color="#ddd"
+              name="angle-right"
+              size={30}
+              style={
+                Object {
+                  "marginRight": 10,
+                }
+              }
+            />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#fff",
+                "borderBottomWidth": 1,
+                "borderColor": "#ddd",
+                "flex": 1,
+                "flexDirection": "row",
+                "height": 50,
+                "justifyContent": "space-between",
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "flex": 2,
+                    "fontWeight": "400",
+                  },
+                  Object {
+                    "color": "#333",
+                  },
+                  Object {
+                    "fontSize": 30,
+                  },
+                  Object {
+                    "alignSelf": undefined,
+                  },
+                  Object {
+                    "marginLeft": 50,
+                  },
+                ]
+              }
+            >
+              Workout 2
+            </Text>
+            <Text
+              style={
+                Object {
+                  "flex": 1,
+                  "fontWeight": "300",
+                }
+              }
+            />
+            <Icon
+              color="#ddd"
+              name="angle-right"
+              size={30}
+              style={
+                Object {
+                  "marginRight": 10,
+                }
+              }
+            />
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#fff",
+                "borderBottomWidth": 1,
+                "borderColor": "#ddd",
+                "flex": 1,
+                "flexDirection": "row",
+                "height": 50,
+                "justifyContent": "space-between",
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Array [
+                  Object {
+                    "flex": 2,
+                    "fontWeight": "400",
+                  },
+                  Object {
+                    "color": "#333",
+                  },
+                  Object {
+                    "fontSize": 30,
+                  },
+                  Object {
+                    "alignSelf": undefined,
+                  },
+                  Object {
+                    "marginLeft": 50,
+                  },
+                ]
+              }
+            >
+              Workout 3
+            </Text>
+            <Text
+              style={
+                Object {
+                  "flex": 1,
+                  "fontWeight": "300",
+                }
+              }
+            />
+            <Icon
+              color="#ddd"
+              name="angle-right"
+              size={30}
+              style={
+                Object {
+                  "marginRight": 10,
+                }
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;
