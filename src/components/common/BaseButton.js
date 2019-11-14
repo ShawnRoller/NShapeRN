@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 
-const BaseButton = ({ onPress, shadow, backgroundColor, children }) => {
+const BaseButton = ({ onPress, shadow, backgroundColor, style, children }) => {
 
   let shadowColor;
   let shadowOffset;
@@ -15,7 +15,7 @@ const BaseButton = ({ onPress, shadow, backgroundColor, children }) => {
   }
 
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.buttonStyle, {backgroundColor}, {shadowColor}, {shadowOpacity}, {shadowRadius}, {shadowOffset} ]}>
+    <TouchableOpacity onPress={onPress} style={[styles.buttonStyle, {backgroundColor}, {shadowColor}, {shadowOpacity}, {shadowRadius}, {shadowOffset}, style ]}>
       {children}
     </TouchableOpacity>
   );

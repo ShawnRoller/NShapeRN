@@ -221,20 +221,20 @@ class ActiveWorkoutScreen extends React.PureComponent {
   _renderButtonControls = () => {
     return (
       <View style={styles.controlsContainerStyle}>
-        <BaseButton onPress={this._onPreviousButtonPress}>
+        <BaseButton style={styles.controlButtonStyle} onPress={this._onPreviousButtonPress}>
           <Image 
             source={require(rewindImagePath)} 
-            style={styles.controlButtonStyle} 
+            style={styles.controlButtonImageStyle} 
             resizeMode='contain' 
           />
         </BaseButton>
-        <BaseButton onPress={this._onPlayButtonPress}>
+        <BaseButton style={styles.controlButtonStyle} onPress={this._onPlayButtonPress}>
           {this._renderPausePlayButton(this.isExercisePaused, this.isTimerRunning)}
         </BaseButton>
-        <BaseButton onPress={this._onNextButtonPress}>
+        <BaseButton style={styles.controlButtonStyle} onPress={this._onNextButtonPress}>
           <Image 
             source={require(fastforwardImagePath)} 
-            style={styles.controlButtonStyle} 
+            style={styles.controlButtonImageStyle} 
             resizeMode='contain' 
           />
           </BaseButton>
@@ -247,7 +247,7 @@ class ActiveWorkoutScreen extends React.PureComponent {
       return (
         <Image 
           source={require(playImagePath)} 
-          style={styles.controlButtonStyle} 
+          style={styles.controlButtonImageStyle} 
           resizeMode='contain' 
         />
       );
@@ -255,7 +255,7 @@ class ActiveWorkoutScreen extends React.PureComponent {
       return (
         <Image 
           source={require(pauseImagePath)} 
-          style={styles.controlButtonStyle} 
+          style={styles.controlButtonImageStyle} 
           resizeMode='contain' 
         />
       );
@@ -291,17 +291,18 @@ const styles = {
     alignItems: 'center',
   },
   clockContainerStyle: {
-    flex: 1,
+    flex: 4,
+    justifyContent: 'flex-end'
   },
   exercisesContainerStyle: {
-    flex: 1,
+    flex: 5,
     justifyContent: 'center'
   },
   exerciseTextStyle: {
     fontSize: 49,
   },
   controlsContainerStyle: {
-    flex: 1,
+    flex: 4,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center'
@@ -310,9 +311,13 @@ const styles = {
     fontSize: 49,
   },
   controlButtonStyle: {
+    alignItems: 'center',
+    alignSelf: 'flex-end',
+    marginBottom: 20
+  },
+  controlButtonImageStyle: {
     width: 50,
     height: 50,
-    alignSelf: 'center'
   },
   titleContainerStyle: {
     position: 'absolute',
