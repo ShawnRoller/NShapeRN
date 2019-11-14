@@ -202,9 +202,9 @@ class ActiveWorkoutScreen extends React.PureComponent {
         ref={(ref) => this.circularProgress = ref}
         fill={100}
         rotation={-360}
-        size={200}
-        width={4}
-        tintColor='red'
+        size={250}
+        width={6}
+        tintColor={Colors.ThemeColor}
         onAnimationComplete={this._onAnimationEnd}
       >
       {(fill) => {
@@ -316,8 +316,8 @@ const styles = {
     marginBottom: 20
   },
   controlButtonImageStyle: {
-    width: 50,
-    height: 50,
+    width: 70,
+    height: 70,
   },
   titleContainerStyle: {
     position: 'absolute',
