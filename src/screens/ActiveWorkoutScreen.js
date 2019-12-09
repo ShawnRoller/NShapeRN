@@ -13,6 +13,22 @@ const rewindImagePath = '../images/activeWorkout/rewind.png';
 const fastforwardImagePath = '../images/activeWorkout/fastforward.png';
 const screenWidth = Dimensions.get('window').width;
 
+/*
+Flow for timer start/stop, pause/play button, timer reset, exercise index
+Initial state: stop - play - no reset - 0
+  FF: stop - play - reset - +1
+  RW: stop - play - reset - 0
+Play: start - pause - no reset - 0
+  FF: start - pause - reset - +1
+  RW: stop - play - reset - -1
+Pause: stop - play - no reset - 0
+  FF: stop - play - no reset - +1
+  RW: stop - play - reset - 0
+End of workout - stop - play - no reset - show end
+  FF: stop - play - no reset - show end
+  RW: stop - play - reset - last exercise
+*/
+
 class ActiveWorkoutScreen extends React.PureComponent {
 
   isTimerRunning = false;
